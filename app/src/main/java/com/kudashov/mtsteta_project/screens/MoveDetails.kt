@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.adapters.ActorsAdapter
-import com.kudashov.mtsteta_project.data.source.ActorsDaraSourceImpl
+import com.kudashov.mtsteta_project.data.source.ActorsDataSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMoveDetailsBinding
 
 class MoveDetails: Fragment() {
@@ -36,7 +36,7 @@ class MoveDetails: Fragment() {
 
     private fun init() {
         val dataSource =
-            ActorsDaraSourceImpl()
+            ActorsDataSourceImpl()
         adapter = ActorsAdapter()
         adapter.setList(dataSource.getActors())
         recyclerView = mBinding.rvActors

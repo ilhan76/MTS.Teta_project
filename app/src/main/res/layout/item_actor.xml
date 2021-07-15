@@ -11,13 +11,10 @@
         android:id="@+id/card_avatar"
         android:layout_width="@dimen/item_actor_avatar_width"
         android:layout_height="@dimen/item_actor_avatar_height"
-
-        android:layout_marginTop="@dimen/item_actor_avatar_margin_top"
-        android:layout_marginBottom="@dimen/item_actor_avatar_margin_bottom"
-        android:layout_marginHorizontal="@dimen/item_actor_avatar_margin_horizontal"
-
+        android:layout_marginTop="@dimen/item_actor_avatar_top_margin"
+        android:layout_marginBottom="@dimen/item_actor_avatar_bottom_margin"
+        android:layout_marginHorizontal="@dimen/item_actor_avatar_horizontal_margin"
         app:cardCornerRadius="@dimen/item_actor_avatar_corner_radius"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,11 +24,9 @@
             android:id="@+id/iv_actor_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:contentDescription="@string/item_actor_avatar_cd"
             android:background="@drawable/shape_actor_avatar"
             android:scaleType="centerCrop"
-
             tools:src="@tools:sample/avatars"
             />
     </androidx.cardview.widget.CardView>
@@ -40,17 +35,13 @@
         android:id="@+id/txt_actor_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="@dimen/item_actor_txt_name_margin_start"
-
+        android:layout_marginStart="@dimen/item_actor_txt_name_start_margin"
         android:fontFamily="@font/roboto"
         android:textColor="@color/black"
         android:textSize="@dimen/normal_txt_size"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_avatar"
-
         tools:text="Джейсон Стэйтхам" />
 
 

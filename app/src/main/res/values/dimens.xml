@@ -16,29 +16,29 @@
     <dimen name="movie_details_bottom_sheet_dialog_margin_top">200dp</dimen>
     <dimen name="movie_details_bottom_sheet_dialog_elevation">2dp</dimen>
     <dimen name="movie_details_rating">41dp</dimen>
-    <dimen name="movie_details_rating_margin_top">40dp</dimen>
+    <dimen name="movie_details_rating_top_margin">40dp</dimen>
     <dimen name="normal_txt_size">14sp</dimen>
-    <dimen name="movie_details_data_margin_start">14dp</dimen>
+    <dimen name="movie_details_data_start_margin">14dp</dimen>
     <dimen name="small_txt_size">12sp</dimen>
-    <dimen name="movie_details_genre_margin_top">32dp</dimen>
-    <dimen name="movie_details_genre_margin_bottom">14dp</dimen>
+    <dimen name="movie_details_genre_top_margin">32dp</dimen>
+    <dimen name="movie_details_genre_bottom_margin">14dp</dimen>
     <dimen name="very_small_txt_size">10sp</dimen>
-    <dimen name="movie_details_title_margin_bottom">8dp</dimen>
+    <dimen name="movie_details_title_bottom_margin">8dp</dimen>
     <dimen name="movie_details_title_txt_size">22sp</dimen>
-    <dimen name="movie_details_star_margin_bottom">20dp</dimen>
-    <dimen name="movie_details_description_margin_bottom">35dp</dimen>
+    <dimen name="movie_details_star_bottom_margin">20dp</dimen>
+    <dimen name="movie_details_description_bottom_margin">35dp</dimen>
     <dimen name="movie_details_rv_actors_height">250dp</dimen>
-    <dimen name="movie_details_rx_actors_margin_bottom">94dp</dimen>
+    <dimen name="movie_details_rx_actors_bottom_margin">94dp</dimen>
     <!-- Move Details -->
 
     <!-- Item Actor -->
     <dimen name="item_actor_avatar_width">150dp</dimen>
     <dimen name="item_actor_avatar_height">196dp</dimen>
-    <dimen name="item_actor_avatar_margin_top">16dp</dimen>
-    <dimen name="item_actor_avatar_margin_bottom">12dp</dimen>
-    <dimen name="item_actor_avatar_margin_horizontal">5dp</dimen>
+    <dimen name="item_actor_avatar_top_margin">16dp</dimen>
+    <dimen name="item_actor_avatar_bottom_margin">12dp</dimen>
+    <dimen name="item_actor_avatar_horizontal_margin">5dp</dimen>
     <dimen name="item_actor_avatar_corner_radius">10dp</dimen>
-    <dimen name="item_actor_txt_name_margin_start">5dp</dimen>
+    <dimen name="item_actor_txt_name_start_margin">5dp</dimen>
     <dimen name="movie_details_description_txt_size">14sp</dimen>
     <dimen name="movie_details_txt_actor_text_size">16sp</dimen>
 

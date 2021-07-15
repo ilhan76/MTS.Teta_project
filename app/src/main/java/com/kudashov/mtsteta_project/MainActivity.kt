@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navController = Navigation.findNavController(this, R.id.navHostFragment)
 
         bottomNavigationView = mBinding.bottomNavigationView
         bottomNavigationView.itemIconTintList = null

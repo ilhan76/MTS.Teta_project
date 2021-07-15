@@ -3,7 +3,7 @@ package com.kudashov.mtsteta_project.data.source
 import com.kudashov.mtsteta_project.data.dto.Actor
 
 
-class ActorsDaraSourceImpl:
+class ActorsDataSourceImpl:
     ActorsDataSource {
     override fun getActors(): List<Actor> = listOf(
         Actor(

@@ -7,14 +7,12 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/nav_host_fragment"
+        android:id="@+id/navHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_height"
-
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation_view"
-
+        app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,35 +21,27 @@
         app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_bnv_height"
-
-        app:menu="@menu/bottom_navigation_view_menu"
-
         android:background="@color/white"
-
         app:labelVisibilityMode="unlabeled"
-
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_view_menu" />
 
     <View
         android:id="@+id/underline"
         android:layout_width="@dimen/main_underline_width"
         android:layout_height="@dimen/main_underline_height"
-
         android:background="@drawable/shape_underline"
-
         android:elevation="@dimen/main_underline_elevation"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintWidth_percent="0.5"
-        app:layout_constraintHorizontal_bias="0"/>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
