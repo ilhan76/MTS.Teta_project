@@ -8,6 +8,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
+        viewBinding.enabled = true
         applicationId "com.kudashov.mtsteta_project"
         minSdkVersion 21
         targetSdkVersion 30
@@ -43,6 +44,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     def nav_version = "2.3.4"
 

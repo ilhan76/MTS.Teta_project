@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="shape_actor_avatar_corner_radius">10dp</dimen>
+
+    <dimen name="shape_bottom_sheet_dialog_radius">30dp</dimen>
+
+    <dimen name="shape_txt_age_limit_width">1dp</dimen>
+
+    <dimen name="shape_txt_genre_radius">40dp</dimen>
+    <dimen name="shape_txt_genre_width">1dp</dimen>
+    <dimen name="shape_txt_genre_padding_vertical">4dp</dimen>
+    <dimen name="shape_txt_genre_padding_horizontal">9dp</dimen>
+</resources>
