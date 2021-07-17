@@ -12,4 +12,8 @@
     <!-- Item Actor -->
     <string name="item_actor_avatar_cd">avatar</string>
     <!-- Item Actor -->
+
+    <!-- Movie List -->
+    <string name="movie_list_txt_title">Популярное сейчас</string>
+    <!-- Movie List -->
 </resources>

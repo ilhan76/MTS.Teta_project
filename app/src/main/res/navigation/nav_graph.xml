@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
-    app:startDestination="@id/moveDetails">
+    app:startDestination="@id/movieList">
 
     <fragment
-        android:id="@+id/moveDetails"
-        android:name="com.kudashov.mtsteta_project.screens.MoveDetails"
-        android:label="MoveDetails" />
+        android:id="@+id/movieDetails"
+        android:name="com.kudashov.mtsteta_project.screens.MovieDetails"
+        android:label="MovieDetails">
+        <action
+            android:id="@+id/action_moveDetails_to_movieList"
+            app:destination="@id/movieList" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieList"
+        android:name="com.kudashov.mtsteta_project.screens.MovieList"
+        android:label="MovieList" >
+        <action
+            android:id="@+id/action_movieList_to_moveDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
 </navigation>
