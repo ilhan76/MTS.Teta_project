@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.GenresAdapter
+import com.kudashov.mtsteta_project.adapters.MovieItemDecoration
 import com.kudashov.mtsteta_project.adapters.MoviesAdapter
 import com.kudashov.mtsteta_project.adapters.delegates.GenresDelegate
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
@@ -51,6 +53,7 @@ class MovieList: Fragment(), MoviesDelegate, GenresDelegate{
         moviesAdapter.attachDelegate(this)
         mBinding.rvMovies.layoutManager = GridLayoutManager(context, 2)
         mBinding.rvMovies.adapter = moviesAdapter
+
     }
 
     override fun onDestroy() {

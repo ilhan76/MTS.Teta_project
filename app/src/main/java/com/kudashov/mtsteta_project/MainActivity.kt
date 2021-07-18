@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-
+        
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 
         bottomNavigationView = mBinding.bottomNavigationView

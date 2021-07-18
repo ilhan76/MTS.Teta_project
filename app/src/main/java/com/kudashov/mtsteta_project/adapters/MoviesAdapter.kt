@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
+import com.kudashov.mtsteta_project.customView.MyRatingBar
 import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.squareup.picasso.Picasso
 
@@ -49,10 +51,14 @@ class MoviesAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var description: TextView = view.findViewById(R.id.txtDescription)
         var ageLimit: TextView = view.findViewById(R.id.txtAgeLimit)
 
+        var rating: MyRatingBar = view.findViewById(R.id.rating)
+
         fun bind(movie: MovieDto){
             Picasso.get()
                 .load(movie.imageUrl)
                 .into(poster)
+
+            rating.rating = movie.rateScore
 
             title.text = movie.title
             description.text = movie.description
