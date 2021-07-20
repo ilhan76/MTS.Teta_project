@@ -1,6 +1,7 @@
-package com.kudashov.mtsteta_project.data.source
+package com.kudashov.mtsteta_project.data.source.impl
 
 import com.kudashov.mtsteta_project.data.dto.MovieDto
+import com.kudashov.mtsteta_project.data.source.MoviesDataSource
 
 class MovieDataSourceImpl: MoviesDataSource {
     override fun getMovies() = listOf(

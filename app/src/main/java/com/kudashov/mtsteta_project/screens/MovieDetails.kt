@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.adapters.ActorsAdapter
-import com.kudashov.mtsteta_project.data.source.ActorsDataSourceImpl
+import com.kudashov.mtsteta_project.data.source.impl.ActorsDataSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieDetailsBinding
 
 class MovieDetails: Fragment() {

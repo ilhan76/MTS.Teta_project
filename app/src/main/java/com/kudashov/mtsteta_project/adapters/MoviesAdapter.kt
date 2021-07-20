@@ -1,11 +1,8 @@
 package com.kudashov.mtsteta_project.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -59,29 +56,9 @@ class MoviesAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var rating: MyRatingBar = view.findViewById(R.id.rating)
 
         fun bind(movie: MovieDto){
-/*            val viewTreeObserver: ViewTreeObserver = card.viewTreeObserver
-            if (viewTreeObserver.isAlive) {
-                viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
-                    override fun onGlobalLayout() {
-                        card.viewTreeObserver.removeGlobalOnLayoutListener(this)
-
-                        Log.d("TAG", "onGlobalLayout: before h ${card.height}, w ${card.width}")
-                        // poster.layoutParams.height = (poster.layoutParams.width * 0.694).toInt()
-                        val params = card.layoutParams
-                        params.width = card.width
-                        params.height = (card.width * 0.694).toInt()
-                        card.layoutParams = params
-                        Log.d("TAG", "onGlobalLayout: h ${card.height}, w ${card.width}")
-                        //do some things
-                        //YOURLAYOUT.getWidth() should give a correct answer
-                    }
-                })
-            }*/
-
             Picasso.get()
                 .load(movie.imageUrl)
                 .into(poster)
-
 
             rating.rating = movie.rateScore
 

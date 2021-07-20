@@ -1,6 +1,7 @@
-package com.kudashov.mtsteta_project.data.source
+package com.kudashov.mtsteta_project.data.source.impl
 
 import com.kudashov.mtsteta_project.data.dto.Genre
+import com.kudashov.mtsteta_project.data.source.GenreDataSource
 
 class GenreDataSourceImpl: GenreDataSource {
 

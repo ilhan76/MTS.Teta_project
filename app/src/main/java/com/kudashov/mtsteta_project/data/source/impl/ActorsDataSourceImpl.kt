@@ -1,10 +1,11 @@
-package com.kudashov.mtsteta_project.data.source
+package com.kudashov.mtsteta_project.data.source.impl
 
 import com.kudashov.mtsteta_project.data.dto.Actor
+import com.kudashov.mtsteta_project.data.source.ActorsDataSource
 
 
 class ActorsDataSourceImpl:
-    ActorsDataSource {
+        ActorsDataSource {
     override fun getActors(): List<Actor> = listOf(
         Actor(
             "Джейсон Стейтхам",

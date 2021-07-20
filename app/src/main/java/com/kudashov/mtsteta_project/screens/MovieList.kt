@@ -18,8 +18,8 @@ import com.kudashov.mtsteta_project.adapters.delegates.GenresDelegate
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
 import com.kudashov.mtsteta_project.data.dto.Genre
 import com.kudashov.mtsteta_project.data.dto.MovieDto
-import com.kudashov.mtsteta_project.data.source.GenreDataSourceImpl
-import com.kudashov.mtsteta_project.data.source.MovieDataSourceImpl
+import com.kudashov.mtsteta_project.data.source.impl.GenreDataSourceImpl
+import com.kudashov.mtsteta_project.data.source.impl.MovieDataSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieListBinding
 
 class MovieList: Fragment(), MoviesDelegate, GenresDelegate{
