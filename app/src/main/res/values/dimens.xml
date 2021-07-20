@@ -63,4 +63,19 @@
     <dimen name="movie_list_btn_search_top_margin">30dp</dimen>
     <dimen name="movie_list_rv_genres_height">44dp</dimen>
     <!-- Movie List -->
+
+    <!-- Item Movie -->
+    <dimen name="item_movie_top_margin">15dp</dimen>
+    <dimen name="item_movie_bottom_margin">30dp</dimen>
+    <dimen name="item_movie_rating_bar_width">70dp</dimen>
+    <dimen name="item_movie_rating_bar_height">14dp</dimen>
+    <dimen name="item_movie_rating_bar_top_margin">15dp</dimen>
+    <!-- Item Movie -->
+
+    <!-- Genre Item -->
+    <dimen name="item_genre_horizontal_margin">3dp</dimen>
+    <dimen name="item_genre_top_margin">12dp</dimen>
+    <dimen name="item_genre_bottom_margin">15dp</dimen>
+    <!-- Genre Item -->
+
 </resources>

@@ -51,7 +51,7 @@
                 android:layout_marginEnd="@dimen/start_margin"
                 android:background="@drawable/shape_txt_age_limit"
                 android:gravity="center"
-                android:text="@string/movie_details_txt_rating"
+                android:text="@string/movie_details_txt_age_limit"
                 android:textSize="@dimen/normal_txt_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

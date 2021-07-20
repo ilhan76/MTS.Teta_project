@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/main_bg_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="@dimen/item_movie_top_margin"
+        android:layout_marginBottom="@dimen/item_movie_bottom_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,59 +61,15 @@
             app:layout_constraintTop_toBottomOf="@+id/txtNameOfMovie"
             tools:text="Эйч — загадочный  и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя..." />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/star1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/item_movie_ration_bar_top_margin"-->
-<!--            android:src="@drawable/ic_star_filled"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/txtDescription" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/star2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_star_filled"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/star1"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/star1"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/star1" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/star3"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_star_filled"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/star2"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/star2"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/star2" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/star4"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_star_filled"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/star3"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/star3"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/star3" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/star5"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_star_unfilled"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/star4"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/star4"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/star4" />-->
 
         <com.kudashov.mtsteta_project.customView.MyRatingBar
             android:id="@+id/rating"
-            android:layout_width="70dp"
-            android:layout_height="14dp"
+            android:layout_width="@dimen/item_movie_rating_bar_width"
+            android:layout_height="@dimen/item_movie_rating_bar_height"
+            android:layout_marginTop="@dimen/item_movie_rating_bar_top_margin"
             app:rating="0"
             app:layout_constraintTop_toBottomOf="@+id/txtDescription"
             app:layout_constraintStart_toStartOf="parent"/>
-
 
         <TextView
             style="@style/BaseText"
@@ -127,7 +83,7 @@
             android:textSize="@dimen/item_movie_age_limit_txt_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/movie_details_txt_rating" />
+            tools:text="@string/movie_details_txt_age_limit" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
