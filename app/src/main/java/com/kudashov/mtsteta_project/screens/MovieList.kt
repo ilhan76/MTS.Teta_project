@@ -22,7 +22,7 @@ import com.kudashov.mtsteta_project.data.source.impl.GenreDataSourceImpl
 import com.kudashov.mtsteta_project.data.source.impl.MovieDataSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieListBinding
 
-class MovieList: Fragment(), MoviesDelegate, GenresDelegate{
+class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
     private var _binding: FragmentMovieListBinding? = null
     private val mBinding get() = _binding!!
@@ -31,9 +31,9 @@ class MovieList: Fragment(), MoviesDelegate, GenresDelegate{
     private lateinit var moviesAdapter: MoviesAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMovieListBinding.inflate(layoutInflater, container, false)
         init()
@@ -44,7 +44,7 @@ class MovieList: Fragment(), MoviesDelegate, GenresDelegate{
     private fun init() {
         genreAdapter = GenresAdapter()
         val genreDataSource = GenreDataSourceImpl()
-        genreAdapter.setList(genreDataSource.getGenre())
+        genreAdapter.setList(genreDataSource.getGenres())
         genreAdapter.attachDelegate(this)
         mBinding.rvGenres.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         mBinding.rvGenres.adapter = genreAdapter

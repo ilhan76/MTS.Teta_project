@@ -9,24 +9,25 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
+import com.kudashov.mtsteta_project.adapters.viewHolders.MovieViewHolder
 import com.kudashov.mtsteta_project.customView.MyRatingBar
 import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.squareup.picasso.Picasso
 
 
-class MoviesAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list: MutableList<MovieDto> = ArrayList()
     private lateinit var delegate: MoviesDelegate
 
-    fun setList(newList: List<MovieDto>){
+    fun setList(newList: List<MovieDto>) {
         list.clear()
         list.addAll(newList)
 
         notifyDataSetChanged()
     }
 
-    fun attachDelegate(delegate: MoviesDelegate){
+    fun attachDelegate(delegate: MoviesDelegate) {
         this.delegate = delegate
     }
 
@@ -40,35 +41,8 @@ class MoviesAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
+        when (holder) {
             is MovieViewHolder -> holder.bind(list[position])
-        }
-    }
-
-    class MovieViewHolder(var view: View, var delegate: MoviesDelegate): RecyclerView.ViewHolder(view){
-
-        var card: CardView = view.findViewById(R.id.cardPoster)
-        var poster: ImageView = view.findViewById(R.id.moviePoster)
-        var title: TextView = view.findViewById(R.id.txtNameOfMovie)
-        var description: TextView = view.findViewById(R.id.txtDescription)
-        var ageLimit: TextView = view.findViewById(R.id.txtAgeLimit)
-
-        var rating: MyRatingBar = view.findViewById(R.id.rating)
-
-        fun bind(movie: MovieDto){
-            Picasso.get()
-                .load(movie.imageUrl)
-                .into(poster)
-
-            rating.rating = movie.rateScore
-
-            title.text = movie.title
-            description.text = movie.description
-            ageLimit.text = "${movie.ageRestriction}+"
-
-            view.setOnClickListener {
-                delegate.onMovieItemClick(movie)
-            }
         }
     }
 }

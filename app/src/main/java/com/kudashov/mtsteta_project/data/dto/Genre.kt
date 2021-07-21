@@ -1,5 +1,5 @@
 package com.kudashov.mtsteta_project.data.dto
 
 data class Genre(
-    val genre: String
+        val genre: String
 )

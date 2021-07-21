@@ -31,6 +31,9 @@
     <dimen name="movie_details_rx_actors_bottom_margin">94dp</dimen>
     <dimen name="movie_details_description_txt_size">14sp</dimen>
     <dimen name="movie_details_txt_actor_text_size">16sp</dimen>
+    <dimen name="movie_details_rating_bar_width">70dp</dimen>
+    <dimen name="movie_details_rating_bar_height">14dp</dimen>
+    <dimen name="movie_details_rating_bar_top_margin">15dp</dimen>
     <!-- Move Details -->
 
     <!-- Item Actor -->

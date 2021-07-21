@@ -11,7 +11,7 @@ import com.kudashov.mtsteta_project.adapters.ActorsAdapter
 import com.kudashov.mtsteta_project.data.source.impl.ActorsDataSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieDetailsBinding
 
-class MovieDetails: Fragment() {
+class MovieDetails : Fragment() {
 
     private val TAG: String = this::class.java.simpleName
     private var _binding: FragmentMovieDetailsBinding? = null
@@ -21,9 +21,9 @@ class MovieDetails: Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMovieDetailsBinding.inflate(layoutInflater, container, false)
         init()

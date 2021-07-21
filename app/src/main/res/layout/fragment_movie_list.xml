@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/search"
+        android:id="@+id/ibSearch"
         android:layout_width="@dimen/movie_list_btn_search_size"
         android:layout_height="@dimen/movie_list_btn_search_size"
         android:layout_marginTop="@dimen/movie_list_btn_search_top_margin"
