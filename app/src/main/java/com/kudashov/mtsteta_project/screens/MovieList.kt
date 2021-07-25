@@ -1,6 +1,7 @@
 package com.kudashov.mtsteta_project.screens
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,12 +31,15 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
     private lateinit var genreAdapter: GenresAdapter
     private lateinit var moviesAdapter: MoviesAdapter
 
+    private var navigation: NavDelegate? = null
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMovieListBinding.inflate(layoutInflater, container, false)
+        navigation = activity as NavDelegate
         init()
         return mBinding.root
     }
@@ -60,6 +64,18 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         mBinding.rvMovies.addItemDecoration(itemDecoration)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is NavDelegate){
+            navigation = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        navigation = null
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -67,6 +83,9 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
     override fun onMovieItemClick(movie: MovieDto) {
         Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
+        val bundle = Bundle()
+        bundle.putSerializable("movie", movie)
+        navigation?.fromMovieListToMovieDetails(bundle)
     }
 
     override fun onGenreClick(genre: Genre) {

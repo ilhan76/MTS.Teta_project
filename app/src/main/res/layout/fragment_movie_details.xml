@@ -6,25 +6,15 @@
     android:layout_height="match_parent"
     android:background="@color/grey">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
+
+    <ImageView
+        android:id="@+id/moveImage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/movie_details_movie_img_height"
-        app:cardCornerRadius="@dimen/movie_details_movie_img_corner_radius"
+        android:layout_height="match_parent"
+        android:scaleType="fitStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/moveImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/test_img"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -43,6 +33,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/txtAgeLimit"
                 style="@style/BaseText"
                 android:layout_width="@dimen/movie_details_rating"
                 android:layout_height="@dimen/movie_details_rating"

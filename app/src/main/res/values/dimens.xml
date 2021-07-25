@@ -14,8 +14,6 @@
     <!-- Main -->
 
     <!-- Move Details -->
-    <dimen name="movie_details_movie_img_height">290dp</dimen>
-    <dimen name="movie_details_movie_img_corner_radius">20dp</dimen>
     <dimen name="movie_details_bottom_sheet_dialog_margin_top">200dp</dimen>
     <dimen name="movie_details_bottom_sheet_dialog_elevation">2dp</dimen>
     <dimen name="movie_details_rating">41dp</dimen>

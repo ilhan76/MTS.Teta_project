@@ -3,7 +3,7 @@
 
     <!-- Move Details -->
     <string name="movie_details_txt_actors">Актеры</string>
-    <string name="movie_details_txt_age_limit">18+</string>
+    <string name="movie_details_txt_age_limit">%d+</string>
     <string name="movie_details_txt_data">22.04.2021</string>
     <string name="movie_details_genre">боевики</string>
     <string name="movie_details_title_of_move">Гнев человеческий</string>

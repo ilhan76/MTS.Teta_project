@@ -8,7 +8,7 @@
         android:name="com.kudashov.mtsteta_project.screens.MovieDetails"
         android:label="MovieDetails">
         <action
-            android:id="@+id/action_moveDetails_to_movieList"
+            android:id="@+id/action_move_details_to_movie_list"
             app:destination="@id/movieList" />
     </fragment>
     <fragment
@@ -16,7 +16,7 @@
         android:name="com.kudashov.mtsteta_project.screens.MovieList"
         android:label="MovieList" >
         <action
-            android:id="@+id/action_movieList_to_moveDetails"
+            android:id="@+id/action_movie_list_to_move_details"
             app:destination="@id/movieDetails" />
     </fragment>
 </navigation>
