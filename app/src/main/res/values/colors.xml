@@ -12,6 +12,6 @@
     <color name="pale_grey">#BEBEBE</color>
     <color name="grey">#4C4C4C</color>
 
-    <color name="bottom_sheet_dialog_bg">#F1F1F1</color>
     <color name="underline">#020202</color>
+    <color name="main_bg_color">#F1F1F1</color>
 </resources>

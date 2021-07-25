@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">MTS.Teta_project</string>
+
     <!-- Move Details -->
     <string name="movie_details_txt_actors">Актеры</string>
-    <string name="movie_details_txt_rating">18+</string>
+    <string name="movie_details_txt_age_limit">18+</string>
     <string name="movie_details_txt_data">22.04.2021</string>
     <string name="movie_details_genre">боевики</string>
     <string name="movie_details_title_of_move">Гнев человеческий</string>
@@ -12,4 +13,10 @@
     <!-- Item Actor -->
     <string name="item_actor_avatar_cd">avatar</string>
     <!-- Item Actor -->
+
+    <!-- Movie List -->
+    <string name="movie_list_txt_title">Популярное сейчас</string>
+    <string name="movie_list_txt_age_limit">%d+</string>
+    <!-- Movie List -->
+
 </resources>

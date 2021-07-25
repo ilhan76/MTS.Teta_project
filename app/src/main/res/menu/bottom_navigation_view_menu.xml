@@ -6,7 +6,7 @@
     android:layout_gravity="end">
 
     <item
-        android:id="@+id/moveDetails"
+        android:id="@+id/movieList"
         android:title=""
         android:icon="@drawable/bnv_home"/>
 

@@ -10,20 +10,20 @@ import com.kudashov.mtsteta_project.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private var _binding: ActivityMainBinding? = null
-    private val mBinding get() = _binding!!
+    private val binding get() = _binding!!
 
-    lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+        setContentView(binding.root)
 
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 
-        bottomNavigationView = mBinding.bottomNavigationView
+        bottomNavigationView = binding.bottomNavigationView
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setupWithNavController(navController)
     }
