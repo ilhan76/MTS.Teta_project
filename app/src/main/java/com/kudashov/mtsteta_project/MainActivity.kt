@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), NavDelegate {
 
         val constraintSet = ConstraintSet()
         constraintSet.clone(binding.main)
-        constraintSet.setHorizontalBias(R.id.underline, getItemPosition(itemId) * 0.5f)
+        constraintSet.setHorizontalBias(R.id.underline, getItemPosition(itemId) * 1f)
         constraintSet.applyTo(binding.main)
     }
 

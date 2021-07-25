@@ -79,4 +79,24 @@
     <dimen name="item_genre_bottom_margin">15dp</dimen>
     <!-- Genre Item -->
 
+    <!-- Profile -->
+    <dimen name="profile_name_top_margin">64dp</dimen>
+    <dimen name="profile_title_txt_size">22sp</dimen>
+    <dimen name="profile_txt_email_top_margin">2dp</dimen>
+    <dimen name="profile_avtar_size">72dp</dimen>
+    <dimen name="profile_avatar_top_margin">48dp</dimen>
+    <dimen name="profile_avatar_corner_radius">36dp</dimen>
+    <dimen name="profile_txt_header_interesting_top_margin">56dp</dimen>
+    <dimen name="profile_header_txt_size">18sp</dimen>
+    <dimen name="profile_personal_data_top_margin">30dp</dimen>
+    <dimen name="profile_hint_name_top_margin">14dp</dimen>
+    <dimen name="profile_standard_txt_size">14sp</dimen>
+    <dimen name="profile_header_settings_top_margin">40dp</dimen>
+    <dimen name="profile_header_app_top_margin">40dp</dimen>
+    <dimen name="profile_btn_exit_height">48dp</dimen>
+    <dimen name="profile_btn_exit_top_margin">40dp</dimen>
+    <dimen name="profile_btn_exit_bottom_margin">96dp</dimen>
+    <dimen name="profile_btn_exit_corner_radius">10dp</dimen>
+    <!-- Profile -->
+
 </resources>
