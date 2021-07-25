@@ -13,7 +13,7 @@ class ActorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val name: TextView = view.findViewById(R.id.txt_actor_name)
     private val avatar: ImageView = view.findViewById(R.id.iv_actor_avatar)
 
-    fun onBind(actor: Actor) {
+    fun bind(actor: Actor) {
         name.text = actor.name
         Picasso.get()
                 .load(actor.avatarUrl)

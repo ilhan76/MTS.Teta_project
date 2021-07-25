@@ -14,7 +14,6 @@ import com.kudashov.mtsteta_project.customView.MyRatingBar
 import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.squareup.picasso.Picasso
 
-
 class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list: MutableList<MovieDto> = ArrayList()
