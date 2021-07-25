@@ -1,6 +1,5 @@
 package com.kudashov.mtsteta_project.screens
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -44,7 +43,6 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         return mBinding.root
     }
 
-    @SuppressLint("ResourceType")
     private fun init() {
         genreAdapter = GenresAdapter()
         val genreDataSource = GenreDataSourceImpl()
@@ -84,7 +82,7 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
     override fun onMovieItemClick(movie: MovieDto) {
         Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
         val bundle = Bundle()
-        bundle.putSerializable("movie", movie)
+        bundle.putSerializable("id", movie.id)
         navigation?.fromMovieListToMovieDetails(bundle)
     }
 

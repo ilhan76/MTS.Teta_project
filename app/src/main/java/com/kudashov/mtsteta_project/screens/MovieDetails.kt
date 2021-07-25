@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.ActorsAdapter
 import com.kudashov.mtsteta_project.data.dto.MovieDto
+import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 import com.kudashov.mtsteta_project.data.source.impl.ActorsDataSourceImpl
+import com.kudashov.mtsteta_project.data.source.impl.MovieMoreInfSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieDetailsBinding
 import com.squareup.picasso.Picasso
 
@@ -35,21 +37,22 @@ class MovieDetails : Fragment() {
     }
 
     private fun fillFragment() {
-        val movie: MovieDto = arguments?.get("movie") as MovieDto
+        val movie: MovieMoreInfDto = MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get("id") as Int)
 
         Picasso.get()
             .load(movie.imageUrl)
             .into(binding.moveImage)
 
         binding.apply {
-            txtGenre.text = ""//todo genre
-            txtDate.text = ""//todo date
+            txtGenre.text = movie.genre.genre
+            txtDate.text = movie.data
             txtTitle.text = movie.title
             rating.rating = movie.rateScore
             txtAgeLimit.text = context?.getString(R.string.movie_details_txt_age_limit, movie.ageRestriction)
             txtDescription.text = movie.description
         }
-        //todo actors
+
+        adapter.setList(movie.actors)
     }
 
     private fun init() {

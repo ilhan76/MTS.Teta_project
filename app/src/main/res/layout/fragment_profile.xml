@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="64dp"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Имя" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            tools:text="name@gmail.com" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAvatar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="@dimen/start_margin"
+            app:cardCornerRadius="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/sample_avatar" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtInterests"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="56dp"
+            android:text="Интересы"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvInterests"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/start_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtInterests" />
+
+        <TextView
+            android:id="@+id/txtPersonalData"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="30dp"
+            android:text="Личный данные"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvInterests" />
+
+        <TextView
+            android:id="@+id/txtHintName"
+            style="@style/PaleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="14dp"
+            android:text="Имя"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPersonalData" />
+
+        <EditText
+            android:id="@+id/editTxtName"
+            style="@style/BaseText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginEnd="@dimen/start_margin"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtHintName"
+            tools:text="Константин" />
+
+        <EditText
+            android:id="@+id/editTxtPass"
+            style="@style/BaseText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginEnd="@dimen/start_margin"
+            android:textSize="14sp"
+            android:hint="Пароль"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTxtName"
+            tools:text="**************" />
+
+
+        <EditText
+            android:id="@+id/editTxtEmail"
+            style="@style/BaseText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginEnd="@dimen/start_margin"
+            android:textSize="14sp"
+            android:hint="Почта"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTxtPass"
+            tools:text="name@gmail.com" />
+
+        <EditText
+            android:id="@+id/editTxtPhone"
+            style="@style/BaseText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginEnd="@dimen/start_margin"
+            android:textSize="14sp"
+            android:hint="Телефон"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTxtEmail" />
+
+        <TextView
+            android:id="@+id/txtSettings"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="40dp"
+            android:text="Настройки"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTxtPhone" />
+
+        <Button
+            android:id="@+id/btnNotifications"
+            style="@style/BaseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/ic_btn_settings"
+            android:gravity="start|center_vertical"
+            android:text="Уведомления и звуки"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSettings" />
+
+        <Button
+            android:id="@+id/btnPrivacyPolicy"
+            style="@style/BaseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/ic_btn_settings"
+            android:gravity="start|center_vertical"
+            android:text="Конфоденциальность"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnNotifications" />
+
+        <Button
+            android:id="@+id/btnTheme"
+            style="@style/BaseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/ic_btn_settings"
+            android:gravity="start|center_vertical"
+            android:text="Тема"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPrivacyPolicy" />
+
+        <Button
+            android:id="@+id/btnLanguage"
+            style="@style/BaseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/ic_btn_settings"
+            android:gravity="start|center_vertical"
+            android:text="Язык"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnTheme" />
+
+        <Button
+            android:id="@+id/btnDataAndMemory"
+            style="@style/BaseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/ic_btn_settings"
+            android:gravity="start|center_vertical"
+            android:text="Данные и память"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLanguage" />
+
+        <TextView
+            android:id="@+id/txtApp"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="40dp"
+            android:text="Приложение"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnDataAndMemory" />
+
+        <Button
+            android:id="@+id/btnQuestion"
+            style="@style/BaseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/ic_btn_settings"
+            android:gravity="start|center_vertical"
+            android:text="Задать вопрос"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtApp" />
+
+        <Button
+            android:id="@+id/btnProblem"
+            style="@style/BaseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/ic_btn_settings"
+            android:gravity="start|center_vertical"
+            android:text="Данные и память"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnQuestion" />
+
+        <Button
+            android:id="@+id/btnExit"
+            style="@style/BaseText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="@dimen/start_margin"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="96dp"
+            android:background="@drawable/shape_btn_exit"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Выйти"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnProblem" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
