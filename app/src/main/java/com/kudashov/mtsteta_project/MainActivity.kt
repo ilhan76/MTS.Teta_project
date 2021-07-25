@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity(), NavDelegate {
             override fun onTransitionEnd(transition: Transition?) {
                 NavigationUI.onNavDestinationSelected(item, navController)
             }
+
             override fun onTransitionCancel(transition: Transition?) {}
             override fun onTransitionPause(transition: Transition?) {}
             override fun onTransitionResume(transition: Transition?) {}
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavDelegate {
         }
     }
 
-    fun moveUnderline(itemId: Int){
+    fun moveUnderline(itemId: Int) {
         val transition: Transition = ChangeBounds()
 
         TransitionManager.beginDelayedTransition(binding.main, transition)

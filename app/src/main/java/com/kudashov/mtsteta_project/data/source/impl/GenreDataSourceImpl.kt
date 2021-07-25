@@ -7,16 +7,16 @@ class GenreDataSourceImpl : GenreDataSource {
 
     override fun getGenres(): List<Genre> {
         return listOf(
-                Genre("боевики"),
-                Genre("драмы"),
-                Genre("комедия"),
-                Genre("артхаус"),
-                Genre("мелодрамы"),
-                Genre("фантастика"),
-                Genre("фентези"),
-                Genre("вестерн"),
-                Genre("аниме"),
-                Genre("документальный")
+            Genre("боевики"),
+            Genre("драмы"),
+            Genre("комедия"),
+            Genre("артхаус"),
+            Genre("мелодрамы"),
+            Genre("фантастика"),
+            Genre("фентези"),
+            Genre("вестерн"),
+            Genre("аниме"),
+            Genre("документальный")
         )
     }
 }

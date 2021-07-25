@@ -26,9 +26,9 @@ class MovieDetails : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMovieDetailsBinding.inflate(layoutInflater, container, false)
         init()
@@ -37,7 +37,8 @@ class MovieDetails : Fragment() {
     }
 
     private fun fillFragment() {
-        val movie: MovieMoreInfDto = MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get("id") as Int)
+        val movie: MovieMoreInfDto =
+            MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get("id") as Int)
 
         Picasso.get()
             .load(movie.imageUrl)
@@ -48,7 +49,8 @@ class MovieDetails : Fragment() {
             txtDate.text = movie.data
             txtTitle.text = movie.title
             rating.rating = movie.rateScore
-            txtAgeLimit.text = context?.getString(R.string.movie_details_txt_age_limit, movie.ageRestriction)
+            txtAgeLimit.text =
+                context?.getString(R.string.movie_details_txt_age_limit, movie.ageRestriction)
             txtDescription.text = movie.description
         }
 

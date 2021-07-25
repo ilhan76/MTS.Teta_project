@@ -11,7 +11,8 @@ import com.kudashov.mtsteta_project.customView.MyRatingBar
 import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.squareup.picasso.Picasso
 
-class MovieViewHolder(private val view: View, private val delegate: MoviesDelegate) : RecyclerView.ViewHolder(view) {
+class MovieViewHolder(private val view: View, private val delegate: MoviesDelegate) :
+    RecyclerView.ViewHolder(view) {
 
     private val card: CardView = view.findViewById(R.id.cardPoster)
     private val poster: ImageView = view.findViewById(R.id.moviePoster)
@@ -32,12 +33,13 @@ class MovieViewHolder(private val view: View, private val delegate: MoviesDelega
         this.movie = movie
 
         Picasso.get()
-                .load(movie.imageUrl)
-                .into(poster)
+            .load(movie.imageUrl)
+            .into(poster)
 
         rating.rating = movie.rateScore
         title.text = movie.title
         description.text = movie.description
-        ageLimit.text = view.context.getString(R.string.movie_list_txt_age_limit, movie.ageRestriction)
+        ageLimit.text =
+            view.context.getString(R.string.movie_list_txt_age_limit, movie.ageRestriction)
     }
 }

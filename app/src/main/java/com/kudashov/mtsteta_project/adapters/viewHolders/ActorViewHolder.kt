@@ -16,7 +16,7 @@ class ActorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(actor: Actor) {
         name.text = actor.name
         Picasso.get()
-                .load(actor.avatarUrl)
-                .into(avatar)
+            .load(actor.avatarUrl)
+            .into(avatar)
     }
 }

@@ -33,9 +33,9 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
     private var navigation: NavDelegate? = null
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMovieListBinding.inflate(layoutInflater, container, false)
         navigation = activity as NavDelegate
@@ -48,7 +48,8 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         val genreDataSource = GenreDataSourceImpl()
         genreAdapter.setList(genreDataSource.getGenres())
         genreAdapter.attachDelegate(this)
-        mBinding.rvGenres.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        mBinding.rvGenres.layoutManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         mBinding.rvGenres.adapter = genreAdapter
 
         moviesAdapter = MoviesAdapter()
@@ -58,13 +59,16 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         mBinding.rvMovies.layoutManager = GridLayoutManager(context, 2)
         mBinding.rvMovies.adapter = moviesAdapter
 
-        val itemDecoration = MovieItemDecoration(resources.displayMetrics.widthPixels, resources.getDimension(R.dimen.item_movie_poster_width).toInt())
+        val itemDecoration = MovieItemDecoration(
+            resources.displayMetrics.widthPixels,
+            resources.getDimension(R.dimen.item_movie_poster_width).toInt()
+        )
         mBinding.rvMovies.addItemDecoration(itemDecoration)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is NavDelegate){
+        if (context is NavDelegate) {
             navigation = context
         }
     }
