@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.ActorsAdapter
-import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 import com.kudashov.mtsteta_project.data.source.impl.ActorsDataSourceImpl
 import com.kudashov.mtsteta_project.data.source.impl.MovieMoreInfSourceImpl
@@ -32,13 +31,13 @@ class MovieDetails : Fragment() {
     ): View? {
         _binding = FragmentMovieDetailsBinding.inflate(layoutInflater, container, false)
         init()
-        fillFragment()
+        loadData()
         return binding.root
     }
 
-    private fun fillFragment() {
+    private fun loadData() {
         val movie: MovieMoreInfDto =
-            MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get("id") as Int)
+            MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get(MovieList.ARG_ID) as Int)
 
         Picasso.get()
             .load(movie.imageUrl)

@@ -24,6 +24,10 @@ import com.kudashov.mtsteta_project.databinding.FragmentMovieListBinding
 
 class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
+    companion object {
+        const val ARG_ID = "id"
+    }
+
     private var _binding: FragmentMovieListBinding? = null
     private val mBinding get() = _binding!!
 
@@ -86,7 +90,7 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
     override fun onMovieItemClick(movie: MovieDto) {
         Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
         val bundle = Bundle()
-        bundle.putSerializable("id", movie.id)
+        bundle.putSerializable(ARG_ID, movie.id)
         navigation?.fromMovieListToMovieDetails(bundle)
     }
 
