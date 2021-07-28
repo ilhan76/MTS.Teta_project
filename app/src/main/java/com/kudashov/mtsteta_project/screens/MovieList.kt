@@ -16,6 +16,7 @@ import com.kudashov.mtsteta_project.adapters.itemDecorator.MovieItemDecoration
 import com.kudashov.mtsteta_project.adapters.MoviesAdapter
 import com.kudashov.mtsteta_project.adapters.delegates.GenresDelegate
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
+import com.kudashov.mtsteta_project.adapters.itemDecorator.GenreItemDecoration
 import com.kudashov.mtsteta_project.data.dto.Genre
 import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.kudashov.mtsteta_project.data.source.impl.GenreDataSourceImpl
@@ -29,7 +30,7 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
     }
 
     private var _binding: FragmentMovieListBinding? = null
-    private val mBinding get() = _binding!!
+    private val binding get() = _binding!!
 
     private lateinit var genreAdapter: GenresAdapter
     private lateinit var moviesAdapter: MoviesAdapter
@@ -44,30 +45,35 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         _binding = FragmentMovieListBinding.inflate(layoutInflater, container, false)
         navigation = activity as NavDelegate
         init()
-        return mBinding.root
+        return binding.root
     }
 
     private fun init() {
         genreAdapter = GenresAdapter()
-        val genreDataSource = GenreDataSourceImpl()
-        genreAdapter.setList(genreDataSource.getGenres())
+        val listGenre = GenreDataSourceImpl().getGenres()
+        genreAdapter.setList(listGenre)
         genreAdapter.attachDelegate(this)
-        mBinding.rvGenres.layoutManager =
+        binding.rvGenres.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        mBinding.rvGenres.adapter = genreAdapter
+        binding.rvGenres.adapter = genreAdapter
+        val genreItemDecoration = GenreItemDecoration(
+            resources.getDimension(R.dimen.start_margin).toInt()
+        )
+        genreItemDecoration.setSize(listGenre.size)
 
+        binding.rvGenres.addItemDecoration(genreItemDecoration)
         moviesAdapter = MoviesAdapter()
         val moviesDataSource = MovieDataSourceImpl()
         moviesAdapter.setList(moviesDataSource.getMovies())
         moviesAdapter.attachDelegate(this)
-        mBinding.rvMovies.layoutManager = GridLayoutManager(context, 2)
-        mBinding.rvMovies.adapter = moviesAdapter
+        binding.rvMovies.layoutManager = GridLayoutManager(context, 2)
+        binding.rvMovies.adapter = moviesAdapter
 
-        val itemDecoration = MovieItemDecoration(
+        val movieItemDecoration = MovieItemDecoration(
             resources.displayMetrics.widthPixels,
             resources.getDimension(R.dimen.item_movie_poster_width).toInt()
         )
-        mBinding.rvMovies.addItemDecoration(itemDecoration)
+        binding.rvMovies.addItemDecoration(movieItemDecoration)
     }
 
     override fun onAttach(context: Context) {
