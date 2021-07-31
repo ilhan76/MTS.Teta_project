@@ -3,7 +3,7 @@
 
     <!-- Move Details -->
     <string name="movie_details_txt_actors">Актеры</string>
-    <string name="movie_details_txt_age_limit">18+</string>
+    <string name="movie_details_txt_age_limit">%d+</string>
     <string name="movie_details_txt_data">22.04.2021</string>
     <string name="movie_details_genre">боевики</string>
     <string name="movie_details_title_of_move">Гнев человеческий</string>
@@ -18,5 +18,24 @@
     <string name="movie_list_txt_title">Популярное сейчас</string>
     <string name="movie_list_txt_age_limit">%d+</string>
     <!-- Movie List -->
+
+    <!-- Profile -->
+    <string name="profile_txt_interests">Интересы</string>
+    <string name="profile_personal_data">Личный данные</string>
+    <string name="profile_txt_hint_name">Имя</string>
+    <string name="profile_hint_pass">Пароль</string>
+    <string name="profile_hint_email">Почта</string>
+    <string name="profile_hint_phone">Телефон</string>
+    <string name="profile_header_settings">Настройки</string>
+    <string name="profile_btn_notifications">Уведомления и звуки</string>
+    <string name="profile_privacy_policy">Конфоденциальность</string>
+    <string name="profile_btn_theme">Тема</string>
+    <string name="profile_btn_language">Язык</string>
+    <string name="profile_btn_data_and_memory">Данные и память</string>
+    <string name="profile_header_app">Приложение</string>
+    <string name="profile_btn_question">Задать вопрос</string>
+    <string name="profile_btn_problem">Сообщить о <пробле></пробле>ме</string>
+    <string name="profile_btn_exit">Выйти</string>
+    <!-- Profile -->
 
 </resources>

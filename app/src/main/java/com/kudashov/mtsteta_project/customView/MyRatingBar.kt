@@ -10,8 +10,8 @@ import androidx.core.content.withStyledAttributes
 import com.kudashov.mtsteta_project.R
 
 class MyRatingBar @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null
+    context: Context,
+    attrs: AttributeSet? = null
 ) : View(context, attrs) {
 
     private var filled: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_star_filled)

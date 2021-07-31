@@ -14,4 +14,6 @@
 
     <color name="underline">#020202</color>
     <color name="main_bg_color">#F1F1F1</color>
+    <color name="transparent">#00000000</color>
+    <color name="profile_btn_exit_bg">#C4C4C4</color>
 </resources>

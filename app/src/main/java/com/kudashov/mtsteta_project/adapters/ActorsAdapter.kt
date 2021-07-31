@@ -19,7 +19,9 @@ class ActorsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ActorViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_actor, parent, false))
+        return ActorViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_actor, parent, false)
+        )
     }
 
     override fun getItemCount(): Int = list.size
