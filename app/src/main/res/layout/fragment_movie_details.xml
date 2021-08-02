@@ -85,7 +85,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="@string/movie_details_title_of_move" />
 
-            <com.kudashov.mtsteta_project.customView.MyRatingBar
+            <com.kudashov.mtsteta_project.util.customView.MyRatingBar
                 android:id="@+id/rating"
                 android:layout_width="@dimen/movie_details_rating_bar_width"
                 android:layout_height="@dimen/movie_details_rating_bar_height"

@@ -1,4 +1,4 @@
-package com.kudashov.mtsteta_project.screens
+package com.kudashov.mtsteta_project.screens.movieDetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 import com.kudashov.mtsteta_project.data.source.impl.ActorsDataSourceImpl
 import com.kudashov.mtsteta_project.data.source.impl.MovieMoreInfSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieDetailsBinding
+import com.kudashov.mtsteta_project.screens.movieList.MovieList
 import com.squareup.picasso.Picasso
 
 class MovieDetails : Fragment() {

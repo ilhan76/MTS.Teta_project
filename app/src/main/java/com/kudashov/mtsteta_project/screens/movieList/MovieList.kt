@@ -1,4 +1,4 @@
-package com.kudashov.mtsteta_project.screens
+package com.kudashov.mtsteta_project.screens.movieList
 
 import android.content.Context
 import android.os.Bundle
@@ -22,6 +22,7 @@ import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.kudashov.mtsteta_project.data.source.impl.GenreDataSourceImpl
 import com.kudashov.mtsteta_project.data.source.impl.MovieDataSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieListBinding
+import com.kudashov.mtsteta_project.screens.NavDelegate
 
 class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 

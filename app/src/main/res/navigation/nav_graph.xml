@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/movieDetails"
-        android:name="com.kudashov.mtsteta_project.screens.MovieDetails"
+        android:name="com.kudashov.mtsteta_project.screens.movieDetail.MovieDetails"
         android:label="MovieDetails">
         <action
             android:id="@+id/action_move_details_to_movie_list"
@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieList"
-        android:name="com.kudashov.mtsteta_project.screens.MovieList"
+        android:name="com.kudashov.mtsteta_project.screens.movieList.MovieList"
         android:label="MovieList" >
         <action
             android:id="@+id/action_movie_list_to_move_details"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.kudashov.mtsteta_project.screens.Profile"
+        android:name="com.kudashov.mtsteta_project.screens.profile.Profile"
         android:label="Profile" >
         <action
             android:id="@+id/action_profile_to_movieList"

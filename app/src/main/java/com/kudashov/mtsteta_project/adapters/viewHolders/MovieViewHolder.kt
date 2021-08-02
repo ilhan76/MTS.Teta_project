@@ -7,7 +7,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
-import com.kudashov.mtsteta_project.customView.MyRatingBar
+import com.kudashov.mtsteta_project.util.customView.MyRatingBar
 import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.squareup.picasso.Picasso
 
