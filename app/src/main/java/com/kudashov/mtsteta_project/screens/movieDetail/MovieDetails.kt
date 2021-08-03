@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.ActorsAdapter
 import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
-import com.kudashov.mtsteta_project.data.source.impl.ActorsDataSourceImpl
-import com.kudashov.mtsteta_project.data.source.impl.MovieMoreInfSourceImpl
 import com.kudashov.mtsteta_project.databinding.FragmentMovieDetailsBinding
 import com.kudashov.mtsteta_project.screens.movieList.MovieList
 import com.squareup.picasso.Picasso

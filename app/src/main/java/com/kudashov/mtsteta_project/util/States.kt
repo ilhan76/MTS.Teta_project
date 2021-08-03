@@ -8,8 +8,10 @@ import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 sealed class StateMovieList{
     object Default: StateMovieList()
     object Loading: StateMovieList()
-    class LoadMovieList(val list: List<MovieDto>): StateMovieList()
-    class LoadGenreList(val list: List<Genre>): StateMovieList()
+    class LoadedMovieList(val list: List<MovieDto>): StateMovieList()
+    object NoMovieListItem: StateMovieList()
+    class LoadedGenreList(val list: List<Genre>): StateMovieList()
+    object NoGenreListItem: StateMovieList()
     class Error<T>(val message: T): StateMovieList()
 }
 
