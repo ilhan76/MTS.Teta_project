@@ -30,13 +30,12 @@ class MovieDetails : Fragment() {
     ): View? {
         _binding = FragmentMovieDetailsBinding.inflate(layoutInflater, container, false)
         init()
-        loadData()
+        //loadData()
         return binding.root
     }
 
-    private fun loadData() {
-        val movie: MovieMoreInfDto =
-            MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get(MovieList.ARG_ID) as Int)
+    /*private fun loadData() {
+        val movie: MovieMoreInfDto = MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get(MovieList.ARG_ID) as Int)
 
         Picasso.get()
             .load(movie.imageUrl)
@@ -53,12 +52,12 @@ class MovieDetails : Fragment() {
         }
 
         adapter.setList(movie.actors)
-    }
+    }*/
 
     private fun init() {
-        val dataSource = ActorsDataSourceImpl()
+        //val dataSource = ActorsDataSourceImpl()
         adapter = ActorsAdapter()
-        adapter.setList(dataSource.getActors())
+        //adapter.setList(dataSource.getActors())
         recyclerView = binding.rvActors
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView.adapter = adapter

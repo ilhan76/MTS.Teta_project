@@ -10,7 +10,6 @@ import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.repository.implementation.MovieRepositoryImpl
 import com.kudashov.mtsteta_project.util.StateMovieList
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 

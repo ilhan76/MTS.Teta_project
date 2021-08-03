@@ -76,6 +76,11 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
             resources.getDimension(R.dimen.item_movie_poster_width).toInt()
         )
         binding.rvMovies.addItemDecoration(movieItemDecoration)
+
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.getMoviesAsync()
+            binding.swipeToRefresh.isRefreshing = false
+        }
     }
 
     private fun stateProcessing(state: StateMovieList) {
