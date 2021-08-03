@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.kudashov.mtsteta_project.data.converter.implementation.MovieConverterTest
 import com.kudashov.mtsteta_project.data.source.impl.MovieProviderTest
 import com.kudashov.mtsteta_project.util.extensions.default
 import com.kudashov.mtsteta_project.repository.MovieRepository
@@ -17,8 +18,10 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
     private val TAG: String = this::class.java.simpleName
     private val state =
         MutableLiveData<StateMovieList>().default(initialValue = StateMovieList.Default)
-    private val repository: MovieRepository =
-        MovieRepositoryImpl(movieProvider = MovieProviderTest())
+    private val repository: MovieRepository = MovieRepositoryImpl(
+        movieProvider = MovieProviderTest(),
+        converter = MovieConverterTest()
+    )
 
     fun getGenresAsync() {
         state.postValue(StateMovieList.Loading)
