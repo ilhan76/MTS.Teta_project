@@ -1,12 +1,10 @@
 package com.kudashov.mtsteta_project.data.source.impl
 
 import android.util.Log
+import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
+import com.kudashov.mtsteta_project.data.dto.GenreDto
+import com.kudashov.mtsteta_project.data.dto.*
 import com.kudashov.mtsteta_project.data.source.MovieProvider
-import com.kudashov.mtsteta_project.data.dto.Actor
-import com.kudashov.mtsteta_project.data.dto.Genre
-import com.kudashov.mtsteta_project.data.dto.MovieDto
-import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
-import com.kudashov.mtsteta_project.net.respose.ActorListResponse
 import com.kudashov.mtsteta_project.net.respose.GenreListResponse
 import com.kudashov.mtsteta_project.net.respose.MovieListResponse
 import com.kudashov.mtsteta_project.net.respose.MovieMoreInfResponse
@@ -92,7 +90,7 @@ class MovieProviderTest : MovieProvider {
                         )
                     ), null
                 )
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 return@async MovieListResponse(
                     null, e.localizedMessage
                 )
@@ -104,19 +102,21 @@ class MovieProviderTest : MovieProvider {
             try {
                 Log.d(TAG, "getGenreListAsync: Provider")
                 Thread.sleep(2)
-                return@async GenreListResponse(listOf(
-                    Genre("боевики"),
-                    Genre("драмы"),
-                    Genre("комедия"),
-                    Genre("артхаус"),
-                    Genre("мелодрамы"),
-                    Genre("фантастика"),
-                    Genre("фентези"),
-                    Genre("вестерн"),
-                    Genre("аниме"),
-                    Genre("документальный")
-                ), null)
-            }catch (e: Exception){
+                return@async GenreListResponse(
+                    listOf(
+                        GenreDto(123, "боевики"),
+                        GenreDto(123, "драмы"),
+                        GenreDto(123, "комедия"),
+                        GenreDto(123, "артхаус"),
+                        GenreDto(123, "мелодрамы"),
+                        GenreDto(123, "фантастика"),
+                        GenreDto(123, "фентези"),
+                        GenreDto(123, "вестерн"),
+                        GenreDto(123, "аниме"),
+                        GenreDto(123, "документальный")
+                    ), null
+                )
+            } catch (e: Exception) {
                 return@async GenreListResponse(
                     null, e.localizedMessage
                 )
@@ -135,22 +135,22 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 3,
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg",
-                        genre = Genre("боевик"),
+                        genre = GenreDto(1, "боевик"),
                         data = "",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "Джейсон Стейтхам",
                                 "https://img.zeit.de/news/2019-07/02/klick-hit-jason-statham-tritt-schraubverschluss-von-flasche-190702-99-889522-image.jpeg/wide__1300x731"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Холт МакКеллани",
                                 "https://image.tmdb.org/t/p/original/8NvOcP35qv5UHWEdpqAvQrKnQQz.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Джеффри Донован",
                                 "https://musicimage.xboxlive.com/catalog/video.contributor.7e016500-0200-11db-89ca-0019b92a3933/image?locale=gd-gb&target=circle"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Джош Хартнетт",
                                 "https://funart.pro/uploads/posts/2019-11/1573325375_instagram-dzhosh-hartnett-27.jpg"
                             )
@@ -163,22 +163,22 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 5,
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg",
-                        genre = Genre("боевик"),
+                        genre = GenreDto(1 , "боевик"),
                         data = "08.04.2021",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "Левис Тан",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/lkW8gh20BuwzHecXqYH1eRVuWpb.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Джессика МакНами",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/aAfaMEEqD8syHv5bLi5B3sccrM2.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Джош Лоусон",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/Am9vM77uZd9bGODugwmWtOfzx6E.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Таданубу Асана",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/sL0H5my3PAc208n3yu64TO3ug12.jpg"
                             )
@@ -191,22 +191,22 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 5,
                         ageRestriction = 6,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/546RNYy9Wi5wgboQ7EtD6i0DY5D.jpg",
-                        genre = Genre("мультфильм"),
+                        genre = GenreDto(1, "мультфильм"),
                         data = "29.04.2021",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "Макс Керолайн",
                                 "https://www.themoviedb.org/person/2879407-max-carolan"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Дермот Магеннис",
                                 "https://www.themoviedb.org/person/2194751-dermot-magennis"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Тера Флинн",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/17gBs4aux2NcnMvf3DK5UKUFttn.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Эйва Коннолли",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/o8uE77C4wQHYHJW6En192kjxJGd.jpg"
                             )
@@ -219,22 +219,22 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 4,
                         ageRestriction = 12,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fq3DSw74fAodrbLiSv0BW1Ya4Ae.jpg",
-                        genre = Genre("музыка"),
+                        genre = GenreDto(1 , "музыка"),
                         data = "13.05.2021",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "Чанель",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/qqvTuk4CTvS1IE47CUozhcHVahz.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Джо Дал Хван",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/jpEPPXmVC3EDMqrDQDYyXEMYlah.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Гаэко",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/fDO7vJVRkZOOY1GtQMJzf4N136q.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Роти",
                                 "https://www.themoviedb.org/person/2501179-rothy"
                             )
@@ -247,10 +247,10 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 2,
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5xXGQLVtTAExHY92DHD9ewGmKxf.jpg",
-                        genre = Genre("музыка"),
+                        genre = GenreDto(1, "музыка"),
                         data = "29.04.2021",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "6ix9ine",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/xAlvyeC9zLbygGMxmmyTHymwuZP.jpg"
                             )
@@ -263,22 +263,22 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 4,
                         ageRestriction = 0,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xltjMeLlxywym14NEizl0metO10.jpg",
-                        genre = Genre("мультфильм"),
+                        genre = GenreDto(2, "мультфильм"),
                         data = "06.05.2021",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "Бенсон Джек Энтони",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/aVfEldX1ksEMrx45yNBAf9MAIDZ.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Фрэнсис Берри",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/qCp0psD5qzguABpRxWmMuC04kcl.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Кристиан Харизиу",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/8OpoYvO1QqBYRAp1LxxUIiRdQG0.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Джастин Кларк",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/lJtDhgboCtHgap33vQG9c1Bjpla.jpg"
                             )
@@ -291,22 +291,22 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 4,
                         ageRestriction = 12,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hUfyYGP9Xf6cHF9y44JXJV3NxZM.jpg",
-                        genre = Genre("комедия"),
+                        genre = GenreDto(2, "комедия"),
                         data = "03.06.2021",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "Эмма Стоун",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/2hwXbPW2ffnXUe1Um0WXHG0cTwb.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Эмма Томпсон",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/xr8Ki3CIqweWWqS5q0kUYdiK6oQ.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Джоэл Фрай",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/4nEKEWJpaTHncCTv6zeP98V0qGI.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Пауль Уолтер Хаузер",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/hV2oiKF2xlDMXtuq3Si1TA4b6DA.jpg"
                             )
@@ -319,22 +319,22 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 3,
                         ageRestriction = 16,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg",
-                        genre = Genre("боевик"),
+                        genre = GenreDto(2, "боевик"),
                         data = "08.07.2021",
                         actors = listOf(
-                            Actor(
+                            ActorDto(
                                 "Скарлет Йоханссон",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Флоренсе Пью",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/75PvULemW8BvheSKtPMoBBsvPLh.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Рэйчел Вайс",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/3QbFXeiUzXUVUrJ7fdiCn7A7ReW.jpg"
                             ),
-                            Actor(
+                            ActorDto(
                                 "Дэвид Харбор",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/chPekukMF5SNnW6b22NbYPqAStr.jpg"
                             )
@@ -347,11 +347,12 @@ class MovieProviderTest : MovieProvider {
                         rateScore = 0,
                         ageRestriction = 0,
                         imageUrl = "https://catherineasquithgallery.com/uploads/posts/2021-02/1614251619_3-p-kartinki-fon-chernogo-tsveta-3.jpg",
-                        genre = Genre(""),
+                        genre = GenreDto(-1, ""),
                         data = "",
                         actors = listOf()
                     )
                 },
-                null)
+                null
+            )
         }
 }

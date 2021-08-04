@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.ActorsAdapter
-import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
+import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
 import com.kudashov.mtsteta_project.databinding.FragmentMovieDetailsBinding
 import com.kudashov.mtsteta_project.screens.movieList.MovieList
 import com.squareup.picasso.Picasso
@@ -50,7 +50,7 @@ class MovieDetails : Fragment() {
         viewModel.loadPage(arguments?.get(MovieList.ARG_ID) as Int)
     }
 
-    private fun loadData(movie: MovieMoreInfDto) {
+    private fun loadData(movie: MovieMoreInfDomain) {
         Picasso.get()
             .load(movie.imageUrl)
             .into(binding.moveImage)

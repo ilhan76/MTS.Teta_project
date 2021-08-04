@@ -2,7 +2,6 @@ package com.kudashov.mtsteta_project.screens.movieList
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +19,10 @@ import com.kudashov.mtsteta_project.adapters.MoviesAdapter
 import com.kudashov.mtsteta_project.adapters.delegates.GenresDelegate
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
 import com.kudashov.mtsteta_project.adapters.itemDecorator.GenreItemDecoration
-import com.kudashov.mtsteta_project.data.dto.Genre
-import com.kudashov.mtsteta_project.data.dto.MovieDto
+import com.kudashov.mtsteta_project.data.domain.GenreDomain
+import com.kudashov.mtsteta_project.data.domain.MovieDomain
 import com.kudashov.mtsteta_project.databinding.FragmentMovieListBinding
 import com.kudashov.mtsteta_project.screens.NavDelegate
-import com.kudashov.mtsteta_project.util.StateMovieList
 
 class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
@@ -112,14 +109,14 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         _binding = null
     }
 
-    override fun onMovieItemClick(movie: MovieDto) {
+    override fun onMovieItemClick(movie: MovieDomain) {
         Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
         val bundle = Bundle()
         bundle.putSerializable(ARG_ID, movie.id)
         navigation?.fromMovieListToMovieDetails(bundle)
     }
 
-    override fun onGenreClick(genre: Genre) {
+    override fun onGenreClick(genre: GenreDomain) {
         Toast.makeText(context, genre.genre, Toast.LENGTH_SHORT).show()
     }
 }

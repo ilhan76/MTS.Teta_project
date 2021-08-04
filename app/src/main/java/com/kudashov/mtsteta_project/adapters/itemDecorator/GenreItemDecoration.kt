@@ -2,10 +2,7 @@ package com.kudashov.mtsteta_project.adapters.itemDecorator
 
 import android.graphics.Rect
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kudashov.mtsteta_project.data.dto.Genre
 
 class GenreItemDecoration(private val margin: Int) :
     RecyclerView.ItemDecoration() {
