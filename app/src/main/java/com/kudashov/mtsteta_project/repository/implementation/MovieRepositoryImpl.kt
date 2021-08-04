@@ -19,47 +19,48 @@ class MovieRepositoryImpl(
 ) : MovieRepository {
     private val TAG: String = this::class.java.simpleName
 
-    override suspend fun getGenreListAsync(): Deferred<GenreListResponse> {
-        try {
-            return GlobalScope.async {
+    override suspend fun getGenreListAsync(): Deferred<GenreListResponse> =
+        GlobalScope.async {
+            try {
                 Log.d(TAG, "getGenreListAsync: Repo")
                 val genres = movieProvider.getGenreListAsync().await()
-                Log.d(TAG, "getGenreListAsync: genres.list")
 
-                val listGenres = genres.list?.map {
-                    converter.convertGenreListFromApiToDomain(it)
-                }
-                GenreListResponse(listGenres, "")
-            }
-        } catch (e: Exception) {
-            return GlobalScope.async {
-                 error(e)
+                val listGenres = genres.list?.map { converter.convertGenreListFromApiToDomain(it) }
+
+                GenreListResponse(listGenres, genres.detail)
+            } catch (e: Exception) {
+                GenreListResponse(null, e.localizedMessage)
             }
         }
-    }
 
-    override suspend fun getMovieListAsync(): Deferred<MovieListResponse> {
-        return try {
-            GlobalScope.async {
+
+    override suspend fun getMovieListAsync(): Deferred<MovieListResponse> =
+        GlobalScope.async {
+            try {
                 Log.d(TAG, "getMovieListAsync: Repo")
                 val movies = movieProvider.getMovieListAsync().await()
-                Log.d(TAG, "getMovieListAsync: movie.list")
 
-                val listMovie = movies.list?.map {
-                    converter.convertMovieListFromApiToDomain(it)
-                }
-                MovieListResponse(listMovie, "")
+                val listMovie = movies.list?.map { converter.convertMovieListFromApiToDomain(it) }
+
+                MovieListResponse(listMovie, movies.detail)
+            } catch (e: Exception) {
+                MovieListResponse(
+                    null, e.localizedMessage
+                )
             }
-        } catch (e: Exception) {
-            error(e)
         }
-    }
 
-    override suspend fun getMovieMoreInfAsync(): Deferred<MovieMoreInfResponse> {
-        TODO("Not yet implemented")
-    }
 
-    override suspend fun getActorsAsync(): Deferred<ActorListResponse> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getMovieMoreInfAsync(id: Int): Deferred<MovieMoreInfResponse> =
+        GlobalScope.async {
+            try {
+                Log.d(TAG, "getMovieMoreInfAsync: Repo")
+                val movie = movieProvider.getMovieMoreInfAsync(id).await()
+
+                movie
+            } catch (e: Exception) {
+                MovieMoreInfResponse(null, e.localizedMessage)
+            }
+        }
+
 }

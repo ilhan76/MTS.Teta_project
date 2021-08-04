@@ -14,89 +14,97 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import java.lang.Exception
 
 class MovieProviderTest : MovieProvider {
     private val TAG: String = this::class.java.simpleName
 
     override suspend fun getMovieListAsync(): Deferred<MovieListResponse> =
         GlobalScope.async(Dispatchers.IO) {
-            Log.d(TAG, "getMovieListAsync: Provider")
-            Thread.sleep(200)
-            return@async MovieListResponse(
-                listOf(
-                    MovieDto(
-                        id = 513513646,
-                        title = "Гнев человеческий",
-                        description = "Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя...",
-                        rateScore = 3,
-                        ageRestriction = 18,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg"
-                    ),
-                    MovieDto(
-                        id = 46519841,
-                        title = "Мортал Комбат",
-                        description = "Боец смешанных единоборств Коул Янг не раз соглашался проиграть за деньги. Он не знает о своем наследии...",
-                        rateScore = 5,
-                        ageRestriction = 18,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg"
-                    ),
-                    MovieDto(
-                        id = 35156416,
-                        title = "Упс... Приплыли!",
-                        description = "От Великого потопа зверей спас ковчег. Но спустя полгода скитаний они готовы сбежать с него куда угодно...",
-                        rateScore = 5,
-                        ageRestriction = 6,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/546RNYy9Wi5wgboQ7EtD6i0DY5D.jpg"
-                    ),
-                    MovieDto(
-                        id = 616461564,
-                        title = "The Box",
-                        description = "Уличный музыкант знакомится с музыкальным продюсером, и они вдвоём отправляются в путешествие...",
-                        rateScore = 4,
-                        ageRestriction = 12,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fq3DSw74fAodrbLiSv0BW1Ya4Ae.jpg"
-                    ),
-                    MovieDto(
-                        id = 6165461,
-                        title = "Сага о Дэнни Эрнандесе",
-                        description = "Tekashi69 или Сикснайн — знаменитый бруклинский рэпер с радужными волосами — прогремел...",
-                        rateScore = 2,
-                        ageRestriction = 18,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5xXGQLVtTAExHY92DHD9ewGmKxf.jpg"
-                    ),
-                    MovieDto(
-                        id = 1631,
-                        title = "Пчелка Майя",
-                        description = "Когда упрямая пчелка Майя и ее лучший друг Вилли спасают принцессу-муравьишку, начинается сказочное...",
-                        rateScore = 4,
-                        ageRestriction = 0,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xltjMeLlxywym14NEizl0metO10.jpg"
-                    ),
-                    MovieDto(
-                        id = 51545154,
-                        title = "Круэлла",
-                        description = "Невероятно одаренная мошенница по имени Эстелла решает сделать себе имя в мире моды.",
-                        rateScore = 4,
-                        ageRestriction = 12,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hUfyYGP9Xf6cHF9y44JXJV3NxZM.jpg"
-                    ),
-                    MovieDto(
-                        id = 55116,
-                        title = "Чёрная вдова",
-                        description = "Чёрной Вдове придется вспомнить о том, что было в её жизни задолго до присоединения к команде Мстителей",
-                        rateScore = 3,
-                        ageRestriction = 16,
-                        imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg"
-                    )
-                ), ""
-            )
+            try {
+                Log.d(TAG, "getMovieListAsync: Provider")
+                Thread.sleep(2)
+                return@async MovieListResponse(
+                    listOf(
+                        MovieDto(
+                            id = 513513646,
+                            title = "Гнев человеческий",
+                            description = "Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя...",
+                            rateScore = 3,
+                            ageRestriction = 18,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg"
+                        ),
+                        MovieDto(
+                            id = 46519841,
+                            title = "Мортал Комбат",
+                            description = "Боец смешанных единоборств Коул Янг не раз соглашался проиграть за деньги. Он не знает о своем наследии...",
+                            rateScore = 5,
+                            ageRestriction = 18,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg"
+                        ),
+                        MovieDto(
+                            id = 35156416,
+                            title = "Упс... Приплыли!",
+                            description = "От Великого потопа зверей спас ковчег. Но спустя полгода скитаний они готовы сбежать с него куда угодно...",
+                            rateScore = 5,
+                            ageRestriction = 6,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/546RNYy9Wi5wgboQ7EtD6i0DY5D.jpg"
+                        ),
+                        MovieDto(
+                            id = 616461564,
+                            title = "The Box",
+                            description = "Уличный музыкант знакомится с музыкальным продюсером, и они вдвоём отправляются в путешествие...",
+                            rateScore = 4,
+                            ageRestriction = 12,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fq3DSw74fAodrbLiSv0BW1Ya4Ae.jpg"
+                        ),
+                        MovieDto(
+                            id = 6165461,
+                            title = "Сага о Дэнни Эрнандесе",
+                            description = "Tekashi69 или Сикснайн — знаменитый бруклинский рэпер с радужными волосами — прогремел...",
+                            rateScore = 2,
+                            ageRestriction = 18,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5xXGQLVtTAExHY92DHD9ewGmKxf.jpg"
+                        ),
+                        MovieDto(
+                            id = 1631,
+                            title = "Пчелка Майя",
+                            description = "Когда упрямая пчелка Майя и ее лучший друг Вилли спасают принцессу-муравьишку, начинается сказочное...",
+                            rateScore = 4,
+                            ageRestriction = 0,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xltjMeLlxywym14NEizl0metO10.jpg"
+                        ),
+                        MovieDto(
+                            id = 51545154,
+                            title = "Круэлла",
+                            description = "Невероятно одаренная мошенница по имени Эстелла решает сделать себе имя в мире моды.",
+                            rateScore = 4,
+                            ageRestriction = 12,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hUfyYGP9Xf6cHF9y44JXJV3NxZM.jpg"
+                        ),
+                        MovieDto(
+                            id = 55116,
+                            title = "Чёрная вдова",
+                            description = "Чёрной Вдове придется вспомнить о том, что было в её жизни задолго до присоединения к команде Мстителей",
+                            rateScore = 3,
+                            ageRestriction = 16,
+                            imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg"
+                        )
+                    ), null
+                )
+            } catch (e: Exception){
+                return@async MovieListResponse(
+                    null, e.localizedMessage
+                )
+            }
         }
 
     override suspend fun getGenreListAsync(): Deferred<GenreListResponse> =
         GlobalScope.async(Dispatchers.IO) {
-            Log.d(TAG, "getGenreListAsync: Provider")
-            Thread.sleep(2)
-            return@async GenreListResponse(listOf(
+            try {
+                Log.d(TAG, "getGenreListAsync: Provider")
+                Thread.sleep(2)
+                return@async GenreListResponse(listOf(
                     Genre("боевики"),
                     Genre("драмы"),
                     Genre("комедия"),
@@ -107,7 +115,12 @@ class MovieProviderTest : MovieProvider {
                     Genre("вестерн"),
                     Genre("аниме"),
                     Genre("документальный")
-                ), "")
+                ), null)
+            }catch (e: Exception){
+                return@async GenreListResponse(
+                    null, e.localizedMessage
+                )
+            }
         }
 
     override suspend fun getMovieMoreInfAsync(id: Int): Deferred<MovieMoreInfResponse> =
@@ -339,29 +352,6 @@ class MovieProviderTest : MovieProvider {
                         actors = listOf()
                     )
                 },
-                "")
-        }
-
-    override suspend fun getActorsAsync(): Deferred<ActorListResponse> =
-        GlobalScope.async(Dispatchers.IO) {
-            Log.d(TAG, "getActorsAsync: Provider")
-            return@async ActorListResponse(listOf(
-                Actor(
-                    "Джейсон Стейтхам",
-                    "https://img.zeit.de/news/2019-07/02/klick-hit-jason-statham-tritt-schraubverschluss-von-flasche-190702-99-889522-image.jpeg/wide__1300x731"
-                ),
-                Actor(
-                    "Холт МакКеллани",
-                    "https://image.tmdb.org/t/p/original/8NvOcP35qv5UHWEdpqAvQrKnQQz.jpg"
-                ),
-                Actor(
-                    "Джеффри Донован",
-                    "https://musicimage.xboxlive.com/catalog/video.contributor.7e016500-0200-11db-89ca-0019b92a3933/image?locale=gd-gb&target=circle"
-                ),
-                Actor(
-                    "Джош Хартнетт",
-                    "https://funart.pro/uploads/posts/2019-11/1573325375_instagram-dzhosh-hartnett-27.jpg"
-                )
-            ), "")
+                null)
         }
 }

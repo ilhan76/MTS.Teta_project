@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,8 +26,6 @@ import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.kudashov.mtsteta_project.databinding.FragmentMovieListBinding
 import com.kudashov.mtsteta_project.screens.NavDelegate
 import com.kudashov.mtsteta_project.util.StateMovieList
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
@@ -49,7 +47,7 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMovieListBinding.inflate(layoutInflater, container, false)
         navigation = activity as NavDelegate
         init()
@@ -58,7 +56,18 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
     private fun init() {
         viewModel = ViewModelProvider(this).get(MovieListViewModel::class.java)
-        viewModel.getStates().observe(viewLifecycleOwner, this::stateProcessing)
+
+        viewModel.genresLiveData.observe(viewLifecycleOwner, Observer {
+            genreAdapter.setList(it)
+            val genreItemDecoration =
+                GenreItemDecoration(resources.getDimension(R.dimen.start_margin).toInt())
+            genreItemDecoration.setSize(it.size)
+            binding.rvGenres.addItemDecoration(genreItemDecoration)
+        })
+
+        viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer {
+            moviesAdapter.setList(it)
+        })
 
         genreAdapter = GenresAdapter()
         genreAdapter.attachDelegate(this)
@@ -78,60 +87,12 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         binding.rvMovies.addItemDecoration(movieItemDecoration)
 
         binding.swipeToRefresh.setOnRefreshListener {
-            viewModel.getMoviesAsync()
+            viewModel.getMovies()
             binding.swipeToRefresh.isRefreshing = false
         }
-    }
 
-    private fun stateProcessing(state: StateMovieList) {
-        when (state) {
-            is StateMovieList.Default -> {
-                Log.d(TAG, "stateProcessing: Default")
-                Toast.makeText(context, "Default", Toast.LENGTH_SHORT).show()
-                loadData()
-            }
-            is StateMovieList.Loading -> {
-                Log.d(TAG, "stateProcessing: Loading")
-                Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-            }
-            is StateMovieList.LoadedMovieList -> {
-                Log.d(TAG, "stateProcessing: Success (Movie)")
-                Toast.makeText(context, "Success (Movie)", Toast.LENGTH_SHORT).show()
-                moviesAdapter.setList(state.list)
-            }
-            is StateMovieList.LoadedGenreList -> {
-                Log.d(TAG, "stateProcessing: Success (Genre)")
-                Toast.makeText(context, "Success (Genre)", Toast.LENGTH_SHORT).show()
-                genreAdapter.setList(state.list)
-                val genreItemDecoration =
-                    GenreItemDecoration(resources.getDimension(R.dimen.start_margin).toInt())
-                genreItemDecoration.setSize(state.list.size)
-                if (binding.rvGenres.itemDecorationCount == 0)
-                    binding.rvGenres.addItemDecoration(genreItemDecoration)
-            }
-            is StateMovieList.Error<*> -> {
-                Log.d(TAG, "stateProcessing: ${state.message}")
-                Toast.makeText(context, "${state.message}", Toast.LENGTH_SHORT).show()
-            }
-            is StateMovieList.NoGenreListItem -> {
-                Log.d(TAG, "stateProcessing: No Genre List Item")
-                Toast.makeText(context, "No Genre List Item", Toast.LENGTH_SHORT).show()
-            }
-            is StateMovieList.NoMovieListItem -> {
-                Log.d(TAG, "stateProcessing: No Movie List Item")
-                Toast.makeText(context, "No Movie List Item", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loadData()
-    }
-
-    private fun loadData() {
-        viewModel.getGenresAsync()
-        viewModel.getMoviesAsync()
+        viewModel.getGenres()
+        viewModel.getMovies()
     }
 
     override fun onAttach(context: Context) {

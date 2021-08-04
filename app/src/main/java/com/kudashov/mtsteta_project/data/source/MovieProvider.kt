@@ -10,5 +10,4 @@ interface MovieProvider {
     suspend fun getMovieListAsync() : Deferred<MovieListResponse>
     suspend fun getGenreListAsync() : Deferred<GenreListResponse>
     suspend fun getMovieMoreInfAsync(id: Int) : Deferred<MovieMoreInfResponse>
-    suspend fun getActorsAsync() : Deferred<ActorListResponse>
 }

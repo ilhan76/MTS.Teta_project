@@ -4,5 +4,5 @@ import com.kudashov.mtsteta_project.data.dto.Genre
 
 data class GenreListResponse (
     val list: List<Genre>?,
-    val detail: String
+    val detail: String?
 )
