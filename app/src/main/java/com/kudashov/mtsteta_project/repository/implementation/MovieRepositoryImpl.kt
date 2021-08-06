@@ -6,7 +6,7 @@ import com.kudashov.mtsteta_project.data.domain.GenreDomain
 import com.kudashov.mtsteta_project.data.domain.MovieDomain
 import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
 import com.kudashov.mtsteta_project.data.source.MovieProvider
-import com.kudashov.mtsteta_project.net.respose.*
+import com.kudashov.mtsteta_project.net.response.*
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope

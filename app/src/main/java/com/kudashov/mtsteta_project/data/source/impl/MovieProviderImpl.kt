@@ -1,20 +1,19 @@
 package com.kudashov.mtsteta_project.data.source.impl
 
 import android.util.Log
-import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
 import com.kudashov.mtsteta_project.data.dto.GenreDto
 import com.kudashov.mtsteta_project.data.dto.*
 import com.kudashov.mtsteta_project.data.source.MovieProvider
-import com.kudashov.mtsteta_project.net.respose.GenreListResponse
-import com.kudashov.mtsteta_project.net.respose.MovieListResponse
-import com.kudashov.mtsteta_project.net.respose.MovieMoreInfResponse
+import com.kudashov.mtsteta_project.net.response.GenreListResponse
+import com.kudashov.mtsteta_project.net.response.MovieListResponse
+import com.kudashov.mtsteta_project.net.response.MovieMoreInfResponse
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import java.lang.Exception
 
-class MovieProviderTest : MovieProvider {
+class MovieProviderImpl : MovieProvider {
     private val TAG: String = this::class.java.simpleName
 
     override suspend fun getMovieListAsync(): Deferred<MovieListResponse> =

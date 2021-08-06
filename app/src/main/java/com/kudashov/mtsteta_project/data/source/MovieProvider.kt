@@ -1,8 +1,8 @@
 package com.kudashov.mtsteta_project.data.source
 
-import com.kudashov.mtsteta_project.net.respose.GenreListResponse
-import com.kudashov.mtsteta_project.net.respose.MovieListResponse
-import com.kudashov.mtsteta_project.net.respose.MovieMoreInfResponse
+import com.kudashov.mtsteta_project.net.response.GenreListResponse
+import com.kudashov.mtsteta_project.net.response.MovieListResponse
+import com.kudashov.mtsteta_project.net.response.MovieMoreInfResponse
 import kotlinx.coroutines.Deferred
 
 interface MovieProvider {

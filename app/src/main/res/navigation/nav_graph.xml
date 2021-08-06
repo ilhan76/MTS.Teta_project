@@ -10,6 +10,10 @@
         <action
             android:id="@+id/action_move_details_to_movie_list"
             app:destination="@id/movieList" />
+        <action
+            android:id="@+id/action_movieDetails_to_profile"
+            app:destination="@id/profile"
+            app:popUpTo="@id/movieList" />
     </fragment>
     <fragment
         android:id="@+id/movieList"

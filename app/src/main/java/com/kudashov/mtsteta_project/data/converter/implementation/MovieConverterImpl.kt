@@ -10,7 +10,7 @@ import com.kudashov.mtsteta_project.data.dto.ActorDto
 import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 
-class MovieConverterTest : MovieConverter {
+class MovieConverterImpl : MovieConverter {
 
     override fun convertMovieListFromApiToDomain(movieDto: MovieDto): MovieDomain {
         return MovieDomain(
