@@ -1,25 +1,19 @@
 package com.kudashov.mtsteta_project.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
 import com.kudashov.mtsteta_project.adapters.viewHolders.MovieViewHolder
-import com.kudashov.mtsteta_project.customView.MyRatingBar
-import com.kudashov.mtsteta_project.data.dto.MovieDto
-import com.squareup.picasso.Picasso
+import com.kudashov.mtsteta_project.data.domain.MovieDomain
 
 class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val list: MutableList<MovieDto> = ArrayList()
+    private val list: MutableList<MovieDomain> = ArrayList()
     private lateinit var delegate: MoviesDelegate
 
-    fun setList(newList: List<MovieDto>) {
+    fun setList(newList: List<MovieDomain>) {
         list.clear()
         list.addAll(newList)
 

@@ -1,21 +1,19 @@
 package com.kudashov.mtsteta_project.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.delegates.GenresDelegate
 import com.kudashov.mtsteta_project.adapters.viewHolders.GenreViewHolder
-import com.kudashov.mtsteta_project.data.dto.Genre
+import com.kudashov.mtsteta_project.data.domain.GenreDomain
 
 class GenresAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val list: MutableList<Genre> = ArrayList()
+    private val list: MutableList<GenreDomain> = ArrayList()
     private lateinit var delegate: GenresDelegate
 
-    fun setList(newList: List<Genre>) {
+    fun setList(newList: List<GenreDomain>) {
         list.clear()
         list.addAll(newList)
 

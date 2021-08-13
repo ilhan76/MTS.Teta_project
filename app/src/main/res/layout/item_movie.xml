@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtNameOfMovie"
             tools:text="Эйч — загадочный  и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя..." />
 
-        <com.kudashov.mtsteta_project.customView.MyRatingBar
+        <com.kudashov.mtsteta_project.util.customView.MyRatingBar
             android:id="@+id/rating"
             android:layout_width="@dimen/item_movie_rating_bar_width"
             android:layout_height="@dimen/item_movie_rating_bar_height"

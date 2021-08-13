@@ -1,4 +1,4 @@
-package com.kudashov.mtsteta_project.customView
+package com.kudashov.mtsteta_project.util.customView
 
 import android.content.Context
 import android.graphics.Canvas

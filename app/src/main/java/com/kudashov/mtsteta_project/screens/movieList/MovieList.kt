@@ -1,4 +1,4 @@
-package com.kudashov.mtsteta_project.screens
+package com.kudashov.mtsteta_project.screens.movieList
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,11 +19,10 @@ import com.kudashov.mtsteta_project.adapters.MoviesAdapter
 import com.kudashov.mtsteta_project.adapters.delegates.GenresDelegate
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
 import com.kudashov.mtsteta_project.adapters.itemDecorator.GenreItemDecoration
-import com.kudashov.mtsteta_project.data.dto.Genre
-import com.kudashov.mtsteta_project.data.dto.MovieDto
-import com.kudashov.mtsteta_project.data.source.impl.GenreDataSourceImpl
-import com.kudashov.mtsteta_project.data.source.impl.MovieDataSourceImpl
+import com.kudashov.mtsteta_project.data.domain.GenreDomain
+import com.kudashov.mtsteta_project.data.domain.MovieDomain
 import com.kudashov.mtsteta_project.databinding.FragmentMovieListBinding
+import com.kudashov.mtsteta_project.screens.NavDelegate
 
 class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
@@ -29,8 +30,10 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         const val ARG_ID = "id"
     }
 
+    private val TAG: String = this::class.java.simpleName
     private var _binding: FragmentMovieListBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: MovieListViewModel
 
     private lateinit var genreAdapter: GenresAdapter
     private lateinit var moviesAdapter: MoviesAdapter
@@ -41,7 +44,7 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMovieListBinding.inflate(layoutInflater, container, false)
         navigation = activity as NavDelegate
         init()
@@ -49,22 +52,27 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
     }
 
     private fun init() {
+        viewModel = ViewModelProvider(this).get(MovieListViewModel::class.java)
+
+        viewModel.genresLiveData.observe(viewLifecycleOwner, Observer {
+            genreAdapter.setList(it)
+            val genreItemDecoration =
+                GenreItemDecoration(resources.getDimension(R.dimen.start_margin).toInt())
+            genreItemDecoration.setSize(it.size)
+            binding.rvGenres.addItemDecoration(genreItemDecoration)
+        })
+
+        viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer {
+            moviesAdapter.setList(it)
+        })
+
         genreAdapter = GenresAdapter()
-        val listGenre = GenreDataSourceImpl().getGenres()
-        genreAdapter.setList(listGenre)
         genreAdapter.attachDelegate(this)
         binding.rvGenres.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.rvGenres.adapter = genreAdapter
-        val genreItemDecoration = GenreItemDecoration(
-            resources.getDimension(R.dimen.start_margin).toInt()
-        )
-        genreItemDecoration.setSize(listGenre.size)
 
-        binding.rvGenres.addItemDecoration(genreItemDecoration)
         moviesAdapter = MoviesAdapter()
-        val moviesDataSource = MovieDataSourceImpl()
-        moviesAdapter.setList(moviesDataSource.getMovies())
         moviesAdapter.attachDelegate(this)
         binding.rvMovies.layoutManager = GridLayoutManager(context, 2)
         binding.rvMovies.adapter = moviesAdapter
@@ -74,6 +82,14 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
             resources.getDimension(R.dimen.item_movie_poster_width).toInt()
         )
         binding.rvMovies.addItemDecoration(movieItemDecoration)
+
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.getMovies()
+            binding.swipeToRefresh.isRefreshing = false
+        }
+
+        viewModel.getGenres()
+        viewModel.getMovies()
     }
 
     override fun onAttach(context: Context) {
@@ -93,14 +109,14 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         _binding = null
     }
 
-    override fun onMovieItemClick(movie: MovieDto) {
+    override fun onMovieItemClick(movie: MovieDomain) {
         Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
         val bundle = Bundle()
         bundle.putSerializable(ARG_ID, movie.id)
         navigation?.fromMovieListToMovieDetails(bundle)
     }
 
-    override fun onGenreClick(genre: Genre) {
+    override fun onGenreClick(genre: GenreDomain) {
         Toast.makeText(context, genre.genre, Toast.LENGTH_SHORT).show()
     }
 }

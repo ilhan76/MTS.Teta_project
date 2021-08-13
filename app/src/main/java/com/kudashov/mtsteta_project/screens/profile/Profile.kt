@@ -1,4 +1,4 @@
-package com.kudashov.mtsteta_project.screens
+package com.kudashov.mtsteta_project.screens.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

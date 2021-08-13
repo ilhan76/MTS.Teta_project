@@ -1,10 +1,12 @@
-package com.kudashov.mtsteta_project.data.dto
+package com.kudashov.mtsteta_project.data.domain
 
-data class MovieDto(
+import java.io.Serializable
+
+data class MovieDomain(
     val id: Int,
     val title: String,
     val description: String,
     val rateScore: Int,
     val ageRestriction: Int,
     val imageUrl: String
-)
+) : Serializable

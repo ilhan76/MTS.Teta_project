@@ -1,7 +1,7 @@
 package com.kudashov.mtsteta_project.adapters.delegates
 
-import com.kudashov.mtsteta_project.data.dto.Genre
+import com.kudashov.mtsteta_project.data.domain.GenreDomain
 
 interface GenresDelegate {
-    fun onGenreClick(genre: Genre)
+    fun onGenreClick(genre: GenreDomain)
 }

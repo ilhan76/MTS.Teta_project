@@ -1,18 +1,19 @@
-package com.kudashov.mtsteta_project.screens
+package com.kudashov.mtsteta_project.screens.movieDetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.ActorsAdapter
-import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
-import com.kudashov.mtsteta_project.data.source.impl.ActorsDataSourceImpl
-import com.kudashov.mtsteta_project.data.source.impl.MovieMoreInfSourceImpl
+import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
 import com.kudashov.mtsteta_project.databinding.FragmentMovieDetailsBinding
+import com.kudashov.mtsteta_project.screens.movieList.MovieList
 import com.squareup.picasso.Picasso
 
 class MovieDetails : Fragment() {
@@ -21,6 +22,8 @@ class MovieDetails : Fragment() {
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: MovieDetailViewModel
+
     private lateinit var adapter: ActorsAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -28,17 +31,26 @@ class MovieDetails : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMovieDetailsBinding.inflate(layoutInflater, container, false)
         init()
-        loadData()
         return binding.root
     }
 
-    private fun loadData() {
-        val movie: MovieMoreInfDto =
-            MovieMoreInfSourceImpl().getMovieMoreInfo(arguments?.get(MovieList.ARG_ID) as Int)
+    private fun init() {
+        viewModel = ViewModelProvider(this).get(MovieDetailViewModel::class.java)
 
+        viewModel.movieMoreInfLiveData.observe(viewLifecycleOwner, this::loadData)
+
+        adapter = ActorsAdapter()
+        recyclerView = binding.rvActors
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        recyclerView.adapter = adapter
+
+        viewModel.loadPage(arguments?.get(MovieList.ARG_ID) as Int)
+    }
+
+    private fun loadData(movie: MovieMoreInfDomain) {
         Picasso.get()
             .load(movie.imageUrl)
             .into(binding.moveImage)
@@ -56,18 +68,8 @@ class MovieDetails : Fragment() {
         adapter.setList(movie.actors)
     }
 
-    private fun init() {
-        val dataSource = ActorsDataSourceImpl()
-        adapter = ActorsAdapter()
-        adapter.setList(dataSource.getActors())
-        recyclerView = binding.rvActors
-        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        recyclerView.adapter = adapter
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
-
 }

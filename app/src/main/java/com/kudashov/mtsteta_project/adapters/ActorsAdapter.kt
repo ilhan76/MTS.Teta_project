@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.viewHolders.ActorViewHolder
-import com.kudashov.mtsteta_project.data.dto.Actor
+import com.kudashov.mtsteta_project.data.domain.ActorDomain
 
 class ActorsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val list: MutableList<Actor> = ArrayList()
+    private val list: MutableList<ActorDomain> = ArrayList()
 
-    fun setList(newList: List<Actor>) {
+    fun setList(newList: List<ActorDomain>) {
         list.clear()
         list.addAll(newList)
 

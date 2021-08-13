@@ -7,8 +7,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.kudashov.mtsteta_project.R
 import com.kudashov.mtsteta_project.adapters.delegates.MoviesDelegate
-import com.kudashov.mtsteta_project.customView.MyRatingBar
-import com.kudashov.mtsteta_project.data.dto.MovieDto
+import com.kudashov.mtsteta_project.util.customView.MyRatingBar
+import com.kudashov.mtsteta_project.data.domain.MovieDomain
 import com.squareup.picasso.Picasso
 
 class MovieViewHolder(private val view: View, private val delegate: MoviesDelegate) :
@@ -21,7 +21,7 @@ class MovieViewHolder(private val view: View, private val delegate: MoviesDelega
     private val ageLimit: TextView = view.findViewById(R.id.txtAgeLimit)
     private val rating: MyRatingBar = view.findViewById(R.id.rating)
 
-    private lateinit var movie: MovieDto
+    private lateinit var movie: MovieDomain
 
     init {
         view.setOnClickListener {
@@ -29,7 +29,7 @@ class MovieViewHolder(private val view: View, private val delegate: MoviesDelega
         }
     }
 
-    fun bind(movie: MovieDto) {
+    fun bind(movie: MovieDomain) {
         this.movie = movie
 
         Picasso.get()
