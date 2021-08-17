@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.kudashov.mtsteta_project.data.converter.implementation.MovieConverterImpl
 import com.kudashov.mtsteta_project.data.domain.GenreDomain
 import com.kudashov.mtsteta_project.data.domain.MovieDomain
-import com.kudashov.mtsteta_project.data.source.impl.MovieProviderImpl
+import com.kudashov.mtsteta_project.data.source.impl.RemoteMovieProviderImpl
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.repository.implementation.MovieRepositoryImpl
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
     private val TAG: String = this::class.java.simpleName
     private val repository: MovieRepository = MovieRepositoryImpl(
-        movieProvider = MovieProviderImpl(),
+        movieProvider = RemoteMovieProviderImpl(),
         converter = MovieConverterImpl()
     )
 

@@ -5,7 +5,7 @@ import com.kudashov.mtsteta_project.data.converter.MovieConverter
 import com.kudashov.mtsteta_project.data.domain.GenreDomain
 import com.kudashov.mtsteta_project.data.domain.MovieDomain
 import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
-import com.kudashov.mtsteta_project.data.source.MovieProvider
+import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
 import com.kudashov.mtsteta_project.net.response.*
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import kotlinx.coroutines.Deferred
@@ -14,7 +14,7 @@ import kotlinx.coroutines.async
 import java.lang.Exception
 
 class MovieRepositoryImpl(
-    private val movieProvider: MovieProvider,
+    private val remoteMovieProvider: RemoteMovieProvider,
     private val converter: MovieConverter
 ) : MovieRepository {
     private val TAG: String = this::class.java.simpleName
@@ -24,7 +24,7 @@ class MovieRepositoryImpl(
             try {
                 Log.d(TAG, "getGenreListAsync: Repo")
                 Thread.sleep(2)
-                val genres = movieProvider.getGenreListAsync().await()
+                val genres = remoteMovieProvider.getGenreListAsync().await()
 
                 val listGenres = genres.list?.map { converter.convertGenreListFromApiToDomain(it) }
 
@@ -39,7 +39,7 @@ class MovieRepositoryImpl(
             try {
                 Log.d(TAG, "getMovieListAsync: Repo")
                 Thread.sleep(2)
-                val movies = movieProvider.getMovieListAsync().await()
+                val movies = remoteMovieProvider.getMovieListAsync().await()
 
                 val listMovie = movies.list?.map { converter.convertMovieListFromApiToDomain(it) }
 
@@ -57,7 +57,7 @@ class MovieRepositoryImpl(
             try {
                 Log.d(TAG, "getMovieMoreInfAsync: Repo")
                 Thread.sleep(2)
-                val movieResponse = movieProvider.getMovieMoreInfAsync(id).await()
+                val movieResponse = remoteMovieProvider.getMovieMoreInfAsync(id).await()
 
                 if (movieResponse.movie != null) {
                     val movie = converter.convertMovieMoreInfFromApiToDomain(movieResponse.movie)

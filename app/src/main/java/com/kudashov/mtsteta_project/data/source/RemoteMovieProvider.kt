@@ -5,7 +5,7 @@ import com.kudashov.mtsteta_project.net.response.MovieListResponse
 import com.kudashov.mtsteta_project.net.response.MovieMoreInfResponse
 import kotlinx.coroutines.Deferred
 
-interface MovieProvider {
+interface RemoteMovieProvider {
     suspend fun getMovieListAsync() : Deferred<MovieListResponse>
     suspend fun getGenreListAsync() : Deferred<GenreListResponse>
     suspend fun getMovieMoreInfAsync(id: Int) : Deferred<MovieMoreInfResponse>
