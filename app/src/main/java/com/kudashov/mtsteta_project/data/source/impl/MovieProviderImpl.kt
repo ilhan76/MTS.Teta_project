@@ -135,7 +135,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg",
                         genre = GenreDto(1, "боевик"),
-                        data = "",
+                        date = "",
                         actors = listOf(
                             ActorDto(
                                 "Джейсон Стейтхам",
@@ -163,7 +163,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg",
                         genre = GenreDto(1 , "боевик"),
-                        data = "08.04.2021",
+                        date = "08.04.2021",
                         actors = listOf(
                             ActorDto(
                                 "Левис Тан",
@@ -191,7 +191,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 6,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/546RNYy9Wi5wgboQ7EtD6i0DY5D.jpg",
                         genre = GenreDto(1, "мультфильм"),
-                        data = "29.04.2021",
+                        date = "29.04.2021",
                         actors = listOf(
                             ActorDto(
                                 "Макс Керолайн",
@@ -219,7 +219,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 12,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fq3DSw74fAodrbLiSv0BW1Ya4Ae.jpg",
                         genre = GenreDto(1 , "музыка"),
-                        data = "13.05.2021",
+                        date = "13.05.2021",
                         actors = listOf(
                             ActorDto(
                                 "Чанель",
@@ -247,7 +247,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5xXGQLVtTAExHY92DHD9ewGmKxf.jpg",
                         genre = GenreDto(1, "музыка"),
-                        data = "29.04.2021",
+                        date = "29.04.2021",
                         actors = listOf(
                             ActorDto(
                                 "6ix9ine",
@@ -263,7 +263,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 0,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xltjMeLlxywym14NEizl0metO10.jpg",
                         genre = GenreDto(2, "мультфильм"),
-                        data = "06.05.2021",
+                        date = "06.05.2021",
                         actors = listOf(
                             ActorDto(
                                 "Бенсон Джек Энтони",
@@ -291,7 +291,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 12,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hUfyYGP9Xf6cHF9y44JXJV3NxZM.jpg",
                         genre = GenreDto(2, "комедия"),
-                        data = "03.06.2021",
+                        date = "03.06.2021",
                         actors = listOf(
                             ActorDto(
                                 "Эмма Стоун",
@@ -319,7 +319,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 16,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg",
                         genre = GenreDto(2, "боевик"),
-                        data = "08.07.2021",
+                        date = "08.07.2021",
                         actors = listOf(
                             ActorDto(
                                 "Скарлет Йоханссон",
@@ -347,7 +347,7 @@ class MovieProviderImpl : MovieProvider {
                         ageRestriction = 0,
                         imageUrl = "https://catherineasquithgallery.com/uploads/posts/2021-02/1614251619_3-p-kartinki-fon-chernogo-tsveta-3.jpg",
                         genre = GenreDto(-1, ""),
-                        data = "",
+                        date = "",
                         actors = listOf()
                     )
                 },

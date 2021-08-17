@@ -35,7 +35,7 @@ class MovieConverterImpl : MovieConverter {
             movieMoreInfDto.id,
             movieMoreInfDto.imageUrl,
             convertGenreListFromApiToDomain(movieMoreInfDto.genre),
-            movieMoreInfDto.data,
+            movieMoreInfDto.date,
             movieMoreInfDto.ageRestriction,
             movieMoreInfDto.title,
             movieMoreInfDto.description,
