@@ -110,10 +110,10 @@ class MovieConverterImpl : MovieConverter {
             ),
             genres = movieMoreInfDto.genre.map {
                 convertGenreListFromDtoToEntity(it)
-            },
+            }/*,
             actors = movieMoreInfDto.actors.map {
                 convertActorFromApiToEntity(it)
-            }
+            }*/
         )
 
     private fun convertActorsFromApiToDomain(actorsDto: List<ActorDto>): List<ActorDomain> =

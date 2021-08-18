@@ -4,14 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.kudashov.mtsteta_project.App
 import com.kudashov.mtsteta_project.data.room.dao.ActorDao
 import com.kudashov.mtsteta_project.data.room.dao.GenreDao
 import com.kudashov.mtsteta_project.data.room.dao.MovieDao
 import com.kudashov.mtsteta_project.data.room.entity.ActorEntity
 import com.kudashov.mtsteta_project.data.room.entity.GenreEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
-import com.kudashov.mtsteta_project.data.room.entity.relations.MovieActorCrossRef
 import com.kudashov.mtsteta_project.data.room.entity.relations.MovieGenreCrossRef
 
 @Database(
@@ -19,8 +17,8 @@ import com.kudashov.mtsteta_project.data.room.entity.relations.MovieGenreCrossRe
         MovieEntity::class,
         ActorEntity::class,
         GenreEntity::class,
-        MovieGenreCrossRef::class,
-        MovieActorCrossRef::class
+        MovieGenreCrossRef::class/*,
+        MovieActorCrossRef::class*/
     ], version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
