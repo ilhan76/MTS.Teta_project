@@ -19,7 +19,7 @@ import com.kudashov.mtsteta_project.data.room.entity.relations.MovieGenreCrossRe
         ActorEntity::class,
         GenreEntity::class,
         MovieGenreCrossRef::class
-    ], version = 1
+    ], version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
 

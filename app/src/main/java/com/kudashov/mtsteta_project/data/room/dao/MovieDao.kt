@@ -12,7 +12,7 @@ interface MovieDao {
     fun insertMovie(movieEntity: MovieEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieGenreCrossRef(vararg crossRef: MovieGenreCrossRef)
+    fun insertMovieGenreCrossRef(crossRefs: List<MovieGenreCrossRef>)
 
     @Query("SELECT * FROM ${MovieEntity.TABLE_NAME}")
     fun getMovie(): List<MovieEntity>

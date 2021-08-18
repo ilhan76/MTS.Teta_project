@@ -44,11 +44,6 @@ class MovieDetailViewModel(val context: Application) : AndroidViewModel(context)
                             Log.d(TAG, "getMovies: Error ${it.detail}")
                         }
                     }.collect()
-/*                val movieMoreInf = repository.getMovieMoreInf(id).await()
-
-                withContext(Dispatchers.Main) {
-                    _movieMoreInfLiveData.postValue(movieMoreInf.content)
-                }*/
             }
         }
     }
