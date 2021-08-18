@@ -2,15 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "14e4fdbd1b4332dcdde32e77cd7f5f1e",
+    "identityHash": "97c498ef372f6ccf46e532b0849e5563",
     "entities": [
       {
         "tableName": "movie_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `image_url` TEXT NOT NULL, `data` TEXT NOT NULL, `age_restriction` INTEGER NOT NULL, `description` TEXT NOT NULL, `rate_store` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `image_url` TEXT NOT NULL, `data` TEXT NOT NULL, `age_restriction` INTEGER NOT NULL, `description` TEXT NOT NULL, `rate_store` INTEGER NOT NULL, PRIMARY KEY(`movie_id`))",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "id",
+            "columnName": "movie_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -53,7 +53,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "movie_id"
           ],
           "autoGenerate": false
         },
@@ -94,11 +94,11 @@
       },
       {
         "tableName": "genres_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `genre` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`genre_id` INTEGER NOT NULL, `genre` TEXT NOT NULL, PRIMARY KEY(`genre_id`))",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "id",
+            "columnName": "genre_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -111,7 +111,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "genre_id"
           ],
           "autoGenerate": false
         },
@@ -122,7 +122,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '14e4fdbd1b4332dcdde32e77cd7f5f1e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '97c498ef372f6ccf46e532b0849e5563')"
     ]
   }
 }

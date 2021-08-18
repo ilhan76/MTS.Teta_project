@@ -9,7 +9,7 @@ import com.kudashov.mtsteta_project.data.dto.GenreDto
 @Entity(tableName = MovieEntity.TABLE_NAME)
 class MovieEntity(
     @PrimaryKey
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "movie_id")
     val id: Int,
     @ColumnInfo(name = "title")
     val title: String,
