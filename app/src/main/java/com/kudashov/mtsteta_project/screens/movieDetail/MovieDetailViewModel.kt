@@ -1,6 +1,7 @@
 package com.kudashov.mtsteta_project.screens.movieDetail
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +14,9 @@ import com.kudashov.mtsteta_project.data.source.impl.RoomMovieProvider
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.repository.implementation.MovieRepositoryImpl
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onErrorCollect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -30,11 +34,21 @@ class MovieDetailViewModel(val context: Application) : AndroidViewModel(context)
     fun loadPage(id: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val movieMoreInf = repository.getMovieMoreInfAsync(id).await()
+                repository.getMovieMoreInf(id)
+                    .onEach {
+                        if (it.content != null) {
+                            withContext(Dispatchers.Main) {
+                                _movieMoreInfLiveData.postValue(it.content)
+                            }
+                        } else {
+                            Log.d(TAG, "getMovies: Error ${it.detail}")
+                        }
+                    }.collect()
+/*                val movieMoreInf = repository.getMovieMoreInf(id).await()
 
                 withContext(Dispatchers.Main) {
                     _movieMoreInfLiveData.postValue(movieMoreInf.content)
-                }
+                }*/
             }
         }
     }

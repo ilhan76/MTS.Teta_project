@@ -61,8 +61,11 @@ class MovieRepositoryImpl(
                 Log.d(TAG, "getMovieListAsync: LOCAL")
                 val movies = localMovieProvider.getMovieListAsync().await()
                 val listMovie = movies.map { converter.convertMovieListFromEntityToDomain(it) }
-                if (listMovie.isNotEmpty()) RepoResponse(listMovie, null)
-                else RepoResponse<List<MovieDomain>>(null, "empty")
+
+                if (listMovie.isNotEmpty())
+                    RepoResponse(listMovie, null)
+                else
+                    RepoResponse<List<MovieDomain>>(null, "empty")
             } catch (e: Exception) {
                 RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
             }
@@ -86,19 +89,35 @@ class MovieRepositoryImpl(
         })
     }
 
-    override suspend fun getMovieMoreInfAsync(id: Int): Deferred<RepoResponse<MovieMoreInfDomain>> =
-        GlobalScope.async {
+    override fun getMovieMoreInf(id: Int): Flow<RepoResponse<MovieMoreInfDomain>> = flow {
+        Log.d(TAG, "getMovieMoreInf: Repo")
+
+        emit(withContext(Dispatchers.IO) {
+            try {
+                Log.d(TAG, "getMovieMoreInfAsync: Repo")
+                val movieEntity = localMovieProvider.getMovieMoreInfAsync(id).await()
+                val movieDomain = converter.convertMovieMoreInfFromEntityToDomain(movieEntity)
+
+                RepoResponse(movieDomain, null)
+            } catch (e: Exception) {
+                RepoResponse<MovieMoreInfDomain>(null, e.localizedMessage)
+            }
+
+        })
+        emit(withContext(Dispatchers.IO) {
             try {
                 Log.d(TAG, "getMovieMoreInfAsync: Repo")
                 val movieResponse = remoteMovieProvider.getMovieMoreInfAsync(id).await()
 
                 if (movieResponse.movie != null) {
                     val movie = converter.convertMovieMoreInfFromApiToDomain(movieResponse.movie)
-                    RepoResponse(movie, movieResponse.detail)
+                    RepoResponse<MovieMoreInfDomain>(movie, movieResponse.detail)
                 } else RepoResponse<MovieMoreInfDomain>(null, movieResponse.detail)
             } catch (e: Exception) {
                 RepoResponse<MovieMoreInfDomain>(null, e.localizedMessage)
             }
-        }
+
+        })
+    }
 
 }

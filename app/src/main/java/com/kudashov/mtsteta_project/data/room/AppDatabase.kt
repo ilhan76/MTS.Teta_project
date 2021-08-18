@@ -11,12 +11,14 @@ import com.kudashov.mtsteta_project.data.room.dao.MovieDao
 import com.kudashov.mtsteta_project.data.room.entity.ActorEntity
 import com.kudashov.mtsteta_project.data.room.entity.GenreEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
+import com.kudashov.mtsteta_project.data.room.entity.relations.MovieGenreCrossRef
 
 @Database(
     entities = [
         MovieEntity::class,
         ActorEntity::class,
-        GenreEntity::class
+        GenreEntity::class,
+        MovieGenreCrossRef::class
     ], version = 1
 )
 abstract class AppDatabase : RoomDatabase() {

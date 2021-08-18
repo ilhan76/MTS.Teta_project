@@ -3,7 +3,7 @@ package com.kudashov.mtsteta_project.data.dto
 data class MovieMoreInfDto (
     val id: Int,
     val imageUrl: String,
-    val genre: GenreDto,
+    val genre: List<GenreDto>,
     val date: String,
     val ageRestriction: Int,
     val title: String,

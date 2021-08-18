@@ -10,5 +10,5 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
     fun getGenreList() : Flow<RepoResponse<List<GenreDomain>>>
     fun getMovieList() : Flow<RepoResponse<List<MovieDomain>>>
-    suspend fun getMovieMoreInfAsync(id: Int) : Deferred<RepoResponse<MovieMoreInfDomain>>
+    fun getMovieMoreInf(id: Int) : Flow<RepoResponse<MovieMoreInfDomain>>
 }

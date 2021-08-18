@@ -11,6 +11,7 @@ import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 import com.kudashov.mtsteta_project.data.room.entity.GenreEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
+import com.kudashov.mtsteta_project.data.room.entity.MovieMoreInfEntity
 
 class MovieConverterImpl : MovieConverter {
 
@@ -25,14 +26,15 @@ class MovieConverterImpl : MovieConverter {
         )
     }
 
-    override fun convertMovieListFromEntityToDomain(movieEntity: MovieEntity): MovieDomain = MovieDomain(
-        id = movieEntity.id,
-        title = movieEntity.title,
-        imageUrl = movieEntity.imageUrl,
-        ageRestriction = movieEntity.ageRestriction,
-        description = movieEntity.description,
-        rateScore = movieEntity.rateScore
-    )
+    override fun convertMovieListFromEntityToDomain(movieEntity: MovieEntity): MovieDomain =
+        MovieDomain(
+            id = movieEntity.id,
+            title = movieEntity.title,
+            imageUrl = movieEntity.imageUrl,
+            ageRestriction = movieEntity.ageRestriction,
+            description = movieEntity.description,
+            rateScore = movieEntity.rateScore
+        )
 
     override fun convertMovieListFromDtoToEntity(movieDto: MovieDto): MovieEntity = MovieEntity(
         id = movieDto.id,
@@ -51,10 +53,11 @@ class MovieConverterImpl : MovieConverter {
         )
     }
 
-    override fun convertGenreListFromEntityToDomain(genreEntity: GenreEntity): GenreDomain = GenreDomain(
-        id = genreEntity.id,
-        genre = genreEntity.genre
-    )
+    override fun convertGenreListFromEntityToDomain(genreEntity: GenreEntity): GenreDomain =
+        GenreDomain(
+            id = genreEntity.id,
+            genre = genreEntity.genre
+        )
 
     override fun convertGenreListFromDtoToEntity(genreDto: GenreDto): GenreEntity = GenreEntity(
         id = genreDto.id,
@@ -65,7 +68,9 @@ class MovieConverterImpl : MovieConverter {
         return MovieMoreInfDomain(
             movieMoreInfDto.id,
             movieMoreInfDto.imageUrl,
-            convertGenreListFromApiToDomain(movieMoreInfDto.genre),
+            movieMoreInfDto.genre.map {
+                convertGenreListFromApiToDomain(it)
+            },
             movieMoreInfDto.date,
             movieMoreInfDto.ageRestriction,
             movieMoreInfDto.title,
@@ -75,9 +80,20 @@ class MovieConverterImpl : MovieConverter {
         )
     }
 
-    override fun convertMovieMoreInfFromEntityToDomain(movieMoreInfDto: MovieMoreInfDto): MovieMoreInfDomain {
-        TODO("Not yet implemented")
-    }
+    override fun convertMovieMoreInfFromEntityToDomain(movieMoreInfEntity: MovieMoreInfEntity): MovieMoreInfDomain =
+        MovieMoreInfDomain(
+            id = movieMoreInfEntity.movieEntity.id,
+            imageUrl = movieMoreInfEntity.movieEntity.imageUrl,
+            genre = movieMoreInfEntity.genres.map {
+                convertGenreListFromEntityToDomain(it)
+            },
+            data = movieMoreInfEntity.movieEntity.date,
+            ageRestriction = movieMoreInfEntity.movieEntity.ageRestriction,
+            title = movieMoreInfEntity.movieEntity.title,
+            description = movieMoreInfEntity.movieEntity.description,
+            rateScore = movieMoreInfEntity.movieEntity.rateScore,
+            actors = null
+    )
 
     private fun convertActorsFromApiToDomain(actorsDto: List<ActorDto>): List<ActorDomain> {
         return actorsDto.map {

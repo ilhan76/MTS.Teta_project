@@ -8,6 +8,7 @@ import com.kudashov.mtsteta_project.data.dto.MovieDto
 import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 import com.kudashov.mtsteta_project.data.room.entity.GenreEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
+import com.kudashov.mtsteta_project.data.room.entity.MovieMoreInfEntity
 
 interface MovieConverter {
     fun convertMovieListFromApiToDomain(movieDto: MovieDto) : MovieDomain
@@ -19,5 +20,4 @@ interface MovieConverter {
     fun convertGenreListFromDtoToEntity(genreDto: GenreDto) : GenreEntity
 
     fun convertMovieMoreInfFromApiToDomain(movieMoreInfDto: MovieMoreInfDto) : MovieMoreInfDomain
-    fun convertMovieMoreInfFromEntityToDomain(movieMoreInfDto: MovieMoreInfDto) : MovieMoreInfDomain
-}
+    fun convertMovieMoreInfFromEntityToDomain(movieMoreInfEntity: MovieMoreInfEntity) : MovieMoreInfDomain}

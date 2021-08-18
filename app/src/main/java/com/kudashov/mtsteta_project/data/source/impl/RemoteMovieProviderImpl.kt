@@ -147,7 +147,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 3,
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg",
-                        genre = GenreDto(1, "боевик"),
+                        genre = listOf(GenreDto(1, "боевик")),
                         date = "",
                         actors = listOf(
                             ActorDto(
@@ -175,7 +175,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 5,
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg",
-                        genre = GenreDto(1, "боевик"),
+                        genre = listOf(GenreDto(1, "боевик")),
                         date = "08.04.2021",
                         actors = listOf(
                             ActorDto(
@@ -203,7 +203,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 5,
                         ageRestriction = 6,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/546RNYy9Wi5wgboQ7EtD6i0DY5D.jpg",
-                        genre = GenreDto(1, "мультфильм"),
+                        genre = listOf(GenreDto(1, "мультфильм")),
                         date = "29.04.2021",
                         actors = listOf(
                             ActorDto(
@@ -231,7 +231,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 4,
                         ageRestriction = 12,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fq3DSw74fAodrbLiSv0BW1Ya4Ae.jpg",
-                        genre = GenreDto(1, "музыка"),
+                        genre = listOf(GenreDto(1, "музыка")),
                         date = "13.05.2021",
                         actors = listOf(
                             ActorDto(
@@ -259,7 +259,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 2,
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5xXGQLVtTAExHY92DHD9ewGmKxf.jpg",
-                        genre = GenreDto(1, "музыка"),
+                        genre = listOf(GenreDto(1, "музыка")),
                         date = "29.04.2021",
                         actors = listOf(
                             ActorDto(
@@ -275,7 +275,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 4,
                         ageRestriction = 0,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xltjMeLlxywym14NEizl0metO10.jpg",
-                        genre = GenreDto(2, "мультфильм"),
+                        genre = listOf(GenreDto(2, "мультфильм")),
                         date = "06.05.2021",
                         actors = listOf(
                             ActorDto(
@@ -303,7 +303,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 4,
                         ageRestriction = 12,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hUfyYGP9Xf6cHF9y44JXJV3NxZM.jpg",
-                        genre = GenreDto(2, "комедия"),
+                        genre = listOf(GenreDto(2, "комедия")),
                         date = "03.06.2021",
                         actors = listOf(
                             ActorDto(
@@ -331,7 +331,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 3,
                         ageRestriction = 16,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg",
-                        genre = GenreDto(2, "боевик"),
+                        genre = listOf(GenreDto(2, "боевик")),
                         date = "08.07.2021",
                         actors = listOf(
                             ActorDto(
@@ -359,7 +359,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 0,
                         ageRestriction = 0,
                         imageUrl = "https://catherineasquithgallery.com/uploads/posts/2021-02/1614251619_3-p-kartinki-fon-chernogo-tsveta-3.jpg",
-                        genre = GenreDto(-1, ""),
+                        genre = listOf(GenreDto(-1, "")),
                         date = "",
                         actors = listOf()
                     )

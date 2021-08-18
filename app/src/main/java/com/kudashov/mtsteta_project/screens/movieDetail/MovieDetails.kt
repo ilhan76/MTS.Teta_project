@@ -56,7 +56,7 @@ class MovieDetails : Fragment() {
             .into(binding.moveImage)
 
         binding.apply {
-            txtGenre.text = movie.genre.genre
+            txtGenre.text = movie.genre.first().genre
             txtDate.text = movie.data
             txtTitle.text = movie.title
             rating.rating = movie.rateScore
@@ -65,7 +65,7 @@ class MovieDetails : Fragment() {
             txtDescription.text = movie.description
         }
 
-        adapter.setList(movie.actors)
+        //adapter.setList(movie.actors)
     }
 
     override fun onDestroy() {
