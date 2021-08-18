@@ -8,7 +8,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
-    suspend fun getGenreListAsync() : Deferred<RepoResponse<List<GenreDomain>>>
+    fun getGenreList() : Flow<RepoResponse<List<GenreDomain>>>
     fun getMovieList() : Flow<RepoResponse<List<MovieDomain>>>
     suspend fun getMovieMoreInfAsync(id: Int) : Deferred<RepoResponse<MovieMoreInfDomain>>
 }

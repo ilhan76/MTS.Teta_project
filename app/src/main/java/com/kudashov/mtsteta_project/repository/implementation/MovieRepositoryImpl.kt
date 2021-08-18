@@ -23,19 +23,35 @@ class MovieRepositoryImpl(
 ) : MovieRepository {
     private val TAG: String = this::class.java.simpleName
 
-    override suspend fun getGenreListAsync(): Deferred<RepoResponse<List<GenreDomain>>> =
-        GlobalScope.async {
+    override fun getGenreList(): Flow<RepoResponse<List<GenreDomain>>> = flow {
+        Log.d(TAG, "getGenreListAsync: Repo")
+        emit(withContext(Dispatchers.IO) {
             try {
-                Log.d(TAG, "getGenreListAsync: Repo")
+                Log.d(TAG, "getGenreList: LOCAL")
+                val genres = localMovieProvider.getGenreListAsync().await()
+                val listGenres = genres.map { converter.convertGenreListFromEntityToDomain(it) }
+                RepoResponse(listGenres, null)
+            } catch (e: Exception) {
+                RepoResponse<List<GenreDomain>>(null, e.localizedMessage)
+            }
+        })
+        emit(withContext(Dispatchers.IO) {
+            try {
+                Log.d(TAG, "getGenreList: REMOTE")
                 val genres = remoteMovieProvider.getGenreListAsync().await()
+                val listGenres =
+                    genres.list?.map { converter.convertGenreListFromApiToDomain(it) }
 
-                val listGenres = genres.list?.map { converter.convertGenreListFromApiToDomain(it) }
+                localMovieProvider.addGenres(genres.list?.map {
+                    converter.convertGenreListFromDtoToEntity(it)
+                }!!)
 
                 RepoResponse(listGenres, genres.detail)
             } catch (e: Exception) {
                 RepoResponse<List<GenreDomain>>(null, e.localizedMessage)
             }
-        }
+        })
+    }
 
     override fun getMovieList(): Flow<RepoResponse<List<MovieDomain>>> = flow {
         Log.d(TAG, "getMovieListAsync: Repo")
@@ -45,7 +61,8 @@ class MovieRepositoryImpl(
                 Log.d(TAG, "getMovieListAsync: LOCAL")
                 val movies = localMovieProvider.getMovieListAsync().await()
                 val listMovie = movies.map { converter.convertMovieListFromEntityToDomain(it) }
-                RepoResponse(listMovie, null)
+                if (listMovie.isNotEmpty()) RepoResponse(listMovie, null)
+                else RepoResponse<List<MovieDomain>>(null, "empty")
             } catch (e: Exception) {
                 RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
             }

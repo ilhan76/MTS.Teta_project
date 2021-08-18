@@ -22,8 +22,16 @@ class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider 
         }
     }
 
-    override suspend fun getGenreListAsync(): Deferred<List<GenreEntity>> {
-        TODO("Not yet implemented")
+    override suspend fun getGenreListAsync(): Deferred<List<GenreEntity>> = GlobalScope.async(Dispatchers.IO) {
+        return@async database.genreDao().getGenres()
+    }
+
+    override suspend fun addGenres(genres: List<GenreEntity>) {
+        withContext(Dispatchers.IO){
+            for (i in genres){
+                database.genreDao().addGenre(i)
+            }
+        }
     }
 
     override suspend fun getActorListAsync(): Deferred<List<ActorEntity>> {

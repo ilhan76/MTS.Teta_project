@@ -35,11 +35,21 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
     fun getGenres() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val response = repository.getGenreListAsync().await()
-
-                withContext(Dispatchers.Main) {
-                    _genresLiveData.postValue(response.content)
-                }
+                Log.d(TAG, "getGenres: GENRES")
+                repository.getGenreList()
+                    .onEach {
+                        if (it.content != null){
+                            Log.d(TAG, "getGenres: ${it.content}")
+                            withContext(Dispatchers.Main){
+                                _genresLiveData.postValue(it.content)
+                            }
+                        } else {
+                            when(it.detail){
+                                "empty" -> Log.d(TAG, "getGenres: empty")
+                            }
+                            Log.d(TAG, "getGenres: Error ${it.detail}")
+                        }
+                    }.collect()
             }
         }
     }
@@ -50,7 +60,6 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
                 repository.getMovieList()
                     .onEach {
                         if (it.content != null) {
-                            Log.d(TAG, "getMovies: ${it.content}")
                             withContext(Dispatchers.Main) {
                                 _moviesLiveData.postValue(it.content)
                             }
