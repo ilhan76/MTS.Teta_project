@@ -52,9 +52,12 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
                 repository.getMovieListAsync()
                     .onEach {
                         if (it.content != null) {
+                            Log.d(TAG, "getMovies: ${it.content}")
                             withContext(Dispatchers.Main) {
                                 _moviesLiveData.postValue(it.content)
                             }
+                        } else {
+                            Log.d(TAG, "getMovies: Error ${it.detail}")
                         }
                     }.collect()
             }

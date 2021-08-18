@@ -40,8 +40,7 @@ class MovieRepositoryImpl(
     override fun getMovieListAsync(): Flow<RepoResponse<List<MovieDomain>>> = flow {
         Log.d(TAG, "getMovieListAsync: Repo")
 
-        emit(
-            withContext(Dispatchers.IO) {
+        emit(withContext(Dispatchers.IO) {
                 try {
                     Log.d(TAG, "getMovieListAsync: LOCAL")
                     val movies = localMovieProvider.getMovieListAsync().await()
@@ -61,8 +60,7 @@ class MovieRepositoryImpl(
                 }
             })
 
-        emit(
-            withContext(Dispatchers.IO) {
+        emit(withContext(Dispatchers.IO) {
                 try {
                     Log.d(TAG, "getMovieListAsync: REMOTE")
                     val movies = remoteMovieProvider.getMovieListAsync().await()
