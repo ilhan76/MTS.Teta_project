@@ -116,7 +116,7 @@ class MovieRepositoryImpl(
                     val movieEntity = converter.convertMovieMoreInfFromDtoToEntity(movieResponse.movie)
 
                     localMovieProvider.addMovieMoreInf(movieEntity)
-                    RepoResponse<MovieMoreInfDomain>(movie, movieResponse.detail)
+                    RepoResponse(movie, movieResponse.detail)
                 } else RepoResponse<MovieMoreInfDomain>(null, movieResponse.detail)
             } catch (e: Exception) {
                 RepoResponse<MovieMoreInfDomain>(null, e.localizedMessage)

@@ -5,10 +5,9 @@ import com.kudashov.mtsteta_project.data.room.entity.ActorEntity
 
 @Dao
 interface ActorDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addActor(actorEntity: ActorEntity)
+    suspend fun insertAll(actors: List<ActorEntity>)
 
-    @Delete
-    fun deleteActor(actorEntity: ActorEntity)
+    @Query("DELETE FROM ${ActorEntity.TABLE_NAME}")
+    suspend fun clearActors()
 }

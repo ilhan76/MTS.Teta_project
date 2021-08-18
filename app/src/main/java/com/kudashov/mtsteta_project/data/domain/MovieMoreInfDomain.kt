@@ -9,5 +9,5 @@ data class MovieMoreInfDomain(
     val title: String,
     val description: String,
     val rateScore: Int,
-    val actors: List<ActorDomain>?
+    val actors: List<ActorDomain>
 )

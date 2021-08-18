@@ -3,7 +3,6 @@ package com.kudashov.mtsteta_project.data.room.entity.relations
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 
-/*
 @Entity(
     primaryKeys = ["movie_id", "actor_id"],
     tableName = MovieActorCrossRef.TABLE_NAME
@@ -17,4 +16,4 @@ data class MovieActorCrossRef(
     companion object{
         const val TABLE_NAME = "movie_actor_table"
     }
-}*/
+}

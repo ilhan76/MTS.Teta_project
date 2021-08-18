@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "08ff6fe6e73f5939abbb575a71a2b513",
+    "identityHash": "6064f955ace3181d238dd75076ed3529",
     "entities": [
       {
         "tableName": "movie_table",
@@ -62,11 +62,11 @@
       },
       {
         "tableName": "actors_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `avatar_url` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`actor_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `avatar_url` TEXT NOT NULL, PRIMARY KEY(`actor_id`))",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "id",
+            "columnName": "actor_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -85,7 +85,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "actor_id"
           ],
           "autoGenerate": false
         },
@@ -144,12 +144,39 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "movie_actor_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER NOT NULL, `actor_id` INTEGER NOT NULL, PRIMARY KEY(`movie_id`, `actor_id`))",
+        "fields": [
+          {
+            "fieldPath": "movieId",
+            "columnName": "movie_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actorId",
+            "columnName": "actor_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "movie_id",
+            "actor_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '08ff6fe6e73f5939abbb575a71a2b513')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6064f955ace3181d238dd75076ed3529')"
     ]
   }
 }

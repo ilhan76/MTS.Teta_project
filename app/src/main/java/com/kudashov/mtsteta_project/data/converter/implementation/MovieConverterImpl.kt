@@ -94,7 +94,9 @@ class MovieConverterImpl : MovieConverter {
             title = movieMoreInfEntity.movieEntity.title,
             description = movieMoreInfEntity.movieEntity.description,
             rateScore = movieMoreInfEntity.movieEntity.rateScore,
-            actors = null
+            actors = movieMoreInfEntity.actors.map {
+                convertActorFromEntityToDomain(it)
+            }
         )
 
     override fun convertMovieMoreInfFromDtoToEntity(movieMoreInfDto: MovieMoreInfDto): MovieMoreInfEntity =
@@ -110,15 +112,16 @@ class MovieConverterImpl : MovieConverter {
             ),
             genres = movieMoreInfDto.genre.map {
                 convertGenreListFromDtoToEntity(it)
-            }/*,
+            },
             actors = movieMoreInfDto.actors.map {
                 convertActorFromApiToEntity(it)
-            }*/
+            }
         )
 
     private fun convertActorsFromApiToDomain(actorsDto: List<ActorDto>): List<ActorDomain> =
         actorsDto.map {
             ActorDomain(
+                it.id,
                 it.name,
                 it.avatarUrl
             )
@@ -130,4 +133,9 @@ class MovieConverterImpl : MovieConverter {
         actorsDto.avatarUrl
     )
 
+    private fun convertActorFromEntityToDomain(actorEntity: ActorEntity): ActorDomain = ActorDomain(
+        actorEntity.id,
+        actorEntity.name,
+        actorEntity.avatarUrl
+    )
 }

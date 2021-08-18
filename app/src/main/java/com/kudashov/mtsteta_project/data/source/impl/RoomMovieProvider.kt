@@ -5,6 +5,7 @@ import com.kudashov.mtsteta_project.data.room.entity.ActorEntity
 import com.kudashov.mtsteta_project.data.room.entity.GenreEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieMoreInfEntity
+import com.kudashov.mtsteta_project.data.room.entity.relations.MovieActorCrossRef
 import com.kudashov.mtsteta_project.data.room.entity.relations.MovieGenreCrossRef
 import com.kudashov.mtsteta_project.data.source.LocalMovieProvider
 import kotlinx.coroutines.*
@@ -27,6 +28,7 @@ class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider 
     override suspend fun deleteMovies() {
         withContext(Dispatchers.IO) {
             database.movieDao().clearMovies()
+            database.actorDao().clearActors()
         }
     }
 
@@ -36,8 +38,15 @@ class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider 
 
             database.movieDao().insertMovieGenreCrossRef(movie.genres.map {
                 MovieGenreCrossRef(
-                    movie.movieEntity.id,
-                    it.id
+                    movieId = movie.movieEntity.id,
+                    genreId = it.id
+                )
+            })
+
+            database.movieDao().insertMovieActorCrossRef(movie.actors.map {
+                MovieActorCrossRef(
+                    movieId = movie.movieEntity.id,
+                    actorId = it.id
                 )
             })
         }
@@ -60,10 +69,6 @@ class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider 
         withContext(Dispatchers.IO) {
             database.genreDao().deleteGenres()
         }
-    }
-
-    override suspend fun getActorListAsync(): Deferred<List<ActorEntity>> {
-        TODO("Not yet implemented")
     }
 
     override suspend fun getMovieMoreInfAsync(id: Int): Deferred<MovieMoreInfEntity> =
