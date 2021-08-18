@@ -37,103 +37,36 @@ class MovieRepositoryImpl(
             }
         }
 
-    override fun getMovieListAsync(): Flow<RepoResponse<List<MovieDomain>>> = flow {
+    override fun getMovieList(): Flow<RepoResponse<List<MovieDomain>>> = flow {
         Log.d(TAG, "getMovieListAsync: Repo")
 
         emit(withContext(Dispatchers.IO) {
-                try {
-                    Log.d(TAG, "getMovieListAsync: LOCAL")
-                    val movies = localMovieProvider.getMovieListAsync().await()
-                    val listMovie = movies.map {
-                        MovieDomain(
-                            id = it.id,
-                            title = it.title!!,
-                            imageUrl = it.imageUrl!!,
-                            ageRestriction = it.ageRestriction!!,
-                            description = it.description!!,
-                            rateScore = it.rateScore!!
-                        )
-                    }
-                    RepoResponse(listMovie, null)
-                } catch (e : Exception){
-                    RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
-                }
-            })
-
+            try {
+                Log.d(TAG, "getMovieListAsync: LOCAL")
+                val movies = localMovieProvider.getMovieListAsync().await()
+                val listMovie = movies.map { converter.convertMovieListFromEntityToDomain(it) }
+                RepoResponse(listMovie, null)
+            } catch (e: Exception) {
+                RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
+            }
+        })
         emit(withContext(Dispatchers.IO) {
-                try {
-                    Log.d(TAG, "getMovieListAsync: REMOTE")
-                    val movies = remoteMovieProvider.getMovieListAsync().await()
-                    val listMovie = movies.list?.map {
-                        converter.convertMovieListFromApiToDomain(it)
-                    }
-
-                    localMovieProvider.addMovies(listMovie?.map {
-                        MovieEntity(
-                            id = it.id,
-                            title = it.title,
-                            imageUrl = it.imageUrl,
-                            genre = null,
-                            date = null,
-                            ageRestriction = it.ageRestriction,
-                            description = it.description,
-                            rateScore = it.rateScore
-                        )
-                    }!!)
-
-                    RepoResponse(listMovie, null)
-                } catch (e : Exception){
-                    RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
+            try {
+                Log.d(TAG, "getMovieListAsync: REMOTE")
+                val movies = remoteMovieProvider.getMovieListAsync().await()
+                val listMovie = movies.list?.map {
+                    converter.convertMovieListFromApiToDomain(it)
                 }
-            })
 
-/*        var job = GlobalScope.launch(Dispatchers.IO) {
-            val movies = localMovieProvider.getMovieListAsync().await()
-            Log.d(TAG, "getMovieListAsync: LOCAL")
-            val listMovie = movies.map {
-                MovieDomain(
-                    id = it.id,
-                    title = it.title!!,
-                    imageUrl = it.imageUrl!!,
-                    ageRestriction = it.ageRestriction!!,
-                    description = it.description!!,
-                    rateScore = it.rateScore!!
-                )
+                localMovieProvider.addMovies(movies.list?.map {
+                    converter.convertMovieListFromDtoToEntity(it)
+                }!!)
+
+                RepoResponse(listMovie, null)
+            } catch (e: Exception) {
+                RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
             }
-            emit(GlobalScope.withContext(SomeDispatcher) {
-                val date = async { repository.requestDate() }
-                val time = async { repository.requestTime() }
-                Result(date.await(), time.await())
-            })
-            send(RepoResponse(listMovie, null))
-        }
-        job.join()
-
-        job = GlobalScope.launch(Dispatchers.IO) {
-            val movies = remoteMovieProvider.getMovieListAsync().await()
-            Log.d(TAG, "getMovieListAsync: REMOTE")
-            val listMovie = movies.list?.map {
-                converter.convertMovieListFromApiToDomain(it)
-            }
-
-            send(RepoResponse(listMovie, null))
-
-            localMovieProvider.addMovies(
-                listMovie?.map {
-                    MovieEntity(
-                        id = it.id,
-                        title = it.title,
-                        imageUrl = it.imageUrl,
-                        genre = null,
-                        date = null,
-                        ageRestriction = it.ageRestriction,
-                        description = it.description,
-                        rateScore = it.rateScore
-                    )
-                }!!
-            )
-        }
-        job.join()*/
+        })
     }
 
     override suspend fun getMovieMoreInfAsync(id: Int): Deferred<RepoResponse<MovieMoreInfDomain>> =

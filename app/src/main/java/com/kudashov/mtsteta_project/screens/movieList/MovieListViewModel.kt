@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kudashov.mtsteta_project.App
 import com.kudashov.mtsteta_project.data.converter.implementation.MovieConverterImpl
 import com.kudashov.mtsteta_project.data.domain.GenreDomain
 import com.kudashov.mtsteta_project.data.domain.MovieDomain
@@ -17,7 +16,6 @@ import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.repository.implementation.MovieRepositoryImpl
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 
 class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
@@ -49,7 +47,7 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
     fun getMovies() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                repository.getMovieListAsync()
+                repository.getMovieList()
                     .onEach {
                         if (it.content != null) {
                             Log.d(TAG, "getMovies: ${it.content}")
