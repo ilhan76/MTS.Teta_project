@@ -11,6 +11,8 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 
 class RemoteMovieProviderImpl : RemoteMovieProvider {
@@ -20,7 +22,8 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
         GlobalScope.async(Dispatchers.IO) {
             try {
                 Log.d(TAG, "getMovieListAsync: Provider")
-                Thread.sleep(2)
+                Thread.sleep(1000)
+
                 return@async MovieListResponse(
                     listOf(
                         MovieDto(
@@ -87,12 +90,14 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                             ageRestriction = 16,
                             imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg"
                         )
-                    ), null
+                    ).shuffled(), null
                 )
+
             } catch (e: Exception) {
                 return@async MovieListResponse(
                     null, e.localizedMessage
                 )
+
             }
         }
 
@@ -162,7 +167,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 5,
                         ageRestriction = 18,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg",
-                        genre = GenreDto(1 , "боевик"),
+                        genre = GenreDto(1, "боевик"),
                         date = "08.04.2021",
                         actors = listOf(
                             ActorDto(
@@ -218,7 +223,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         rateScore = 4,
                         ageRestriction = 12,
                         imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fq3DSw74fAodrbLiSv0BW1Ya4Ae.jpg",
-                        genre = GenreDto(1 , "музыка"),
+                        genre = GenreDto(1, "музыка"),
                         date = "13.05.2021",
                         actors = listOf(
                             ActorDto(

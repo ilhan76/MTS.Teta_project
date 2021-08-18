@@ -1,6 +1,7 @@
 package com.kudashov.mtsteta_project.screens.movieList
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,9 +15,10 @@ import com.kudashov.mtsteta_project.data.source.impl.RemoteMovieProviderImpl
 import com.kudashov.mtsteta_project.data.source.impl.RoomMovieProvider
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.repository.implementation.MovieRepositoryImpl
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 
 class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
     private val TAG: String = this::class.java.simpleName
@@ -47,11 +49,14 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
     fun getMovies() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val response = repository.getMovieListAsync().await()
-
-                withContext(Dispatchers.Main) {
-                    _moviesLiveData.postValue(response.content)
-                }
+                repository.getMovieListAsync()
+                    .onEach {
+                        if (it.content != null) {
+                            withContext(Dispatchers.Main) {
+                                _moviesLiveData.postValue(it.content)
+                            }
+                        }
+                    }.collect()
             }
         }
     }

@@ -10,9 +10,10 @@ import com.kudashov.mtsteta_project.data.source.LocalMovieProvider
 import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
 import com.kudashov.mtsteta_project.net.response.*
 import com.kudashov.mtsteta_project.repository.MovieRepository
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 
 class MovieRepositoryImpl(
@@ -26,7 +27,6 @@ class MovieRepositoryImpl(
         GlobalScope.async {
             try {
                 Log.d(TAG, "getGenreListAsync: Repo")
-                Thread.sleep(2)
                 val genres = remoteMovieProvider.getGenreListAsync().await()
 
                 val listGenres = genres.list?.map { converter.convertGenreListFromApiToDomain(it) }
@@ -37,17 +37,40 @@ class MovieRepositoryImpl(
             }
         }
 
-    override suspend fun getMovieListAsync(): Deferred<RepoResponse<List<MovieDomain>>> =
-        GlobalScope.async {
-            try {
-                Log.d(TAG, "getMovieListAsync: Repo")
-                Thread.sleep(2)
-                val movies = remoteMovieProvider.getMovieListAsync().await()
+    override fun getMovieListAsync(): Flow<RepoResponse<List<MovieDomain>>> = flow {
+        Log.d(TAG, "getMovieListAsync: Repo")
 
-                val listMovie = movies.list?.map { converter.convertMovieListFromApiToDomain(it) }
+        emit(
+            withContext(Dispatchers.IO) {
+                try {
+                    Log.d(TAG, "getMovieListAsync: LOCAL")
+                    val movies = localMovieProvider.getMovieListAsync().await()
+                    val listMovie = movies.map {
+                        MovieDomain(
+                            id = it.id,
+                            title = it.title!!,
+                            imageUrl = it.imageUrl!!,
+                            ageRestriction = it.ageRestriction!!,
+                            description = it.description!!,
+                            rateScore = it.rateScore!!
+                        )
+                    }
+                    RepoResponse(listMovie, null)
+                } catch (e : Exception){
+                    RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
+                }
+            })
 
-                localMovieProvider.addMovies(
-                    listMovie?.map {
+        emit(
+            withContext(Dispatchers.IO) {
+                try {
+                    Log.d(TAG, "getMovieListAsync: REMOTE")
+                    val movies = remoteMovieProvider.getMovieListAsync().await()
+                    val listMovie = movies.list?.map {
+                        converter.convertMovieListFromApiToDomain(it)
+                    }
+
+                    localMovieProvider.addMovies(listMovie?.map {
                         MovieEntity(
                             id = it.id,
                             title = it.title,
@@ -58,28 +81,67 @@ class MovieRepositoryImpl(
                             description = it.description,
                             rateScore = it.rateScore
                         )
-                    }!!
-                )
+                    }!!)
 
-                Log.d(
-                    TAG,
-                    "getMovieListAsync: ${localMovieProvider.getMovieListAsync().await().size}"
-                )
+                    RepoResponse(listMovie, null)
+                } catch (e : Exception){
+                    RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
+                }
+            })
 
-                RepoResponse(listMovie, movies.detail)
-            } catch (e: Exception) {
-                RepoResponse<List<MovieDomain>>(
-                    null, e.localizedMessage
+/*        var job = GlobalScope.launch(Dispatchers.IO) {
+            val movies = localMovieProvider.getMovieListAsync().await()
+            Log.d(TAG, "getMovieListAsync: LOCAL")
+            val listMovie = movies.map {
+                MovieDomain(
+                    id = it.id,
+                    title = it.title!!,
+                    imageUrl = it.imageUrl!!,
+                    ageRestriction = it.ageRestriction!!,
+                    description = it.description!!,
+                    rateScore = it.rateScore!!
                 )
             }
+            emit(GlobalScope.withContext(SomeDispatcher) {
+                val date = async { repository.requestDate() }
+                val time = async { repository.requestTime() }
+                Result(date.await(), time.await())
+            })
+            send(RepoResponse(listMovie, null))
         }
+        job.join()
 
+        job = GlobalScope.launch(Dispatchers.IO) {
+            val movies = remoteMovieProvider.getMovieListAsync().await()
+            Log.d(TAG, "getMovieListAsync: REMOTE")
+            val listMovie = movies.list?.map {
+                converter.convertMovieListFromApiToDomain(it)
+            }
+
+            send(RepoResponse(listMovie, null))
+
+            localMovieProvider.addMovies(
+                listMovie?.map {
+                    MovieEntity(
+                        id = it.id,
+                        title = it.title,
+                        imageUrl = it.imageUrl,
+                        genre = null,
+                        date = null,
+                        ageRestriction = it.ageRestriction,
+                        description = it.description,
+                        rateScore = it.rateScore
+                    )
+                }!!
+            )
+        }
+        job.join()*/
+    }
 
     override suspend fun getMovieMoreInfAsync(id: Int): Deferred<RepoResponse<MovieMoreInfDomain>> =
         GlobalScope.async {
             try {
                 Log.d(TAG, "getMovieMoreInfAsync: Repo")
-                Thread.sleep(2)
                 val movieResponse = remoteMovieProvider.getMovieMoreInfAsync(id).await()
 
                 if (movieResponse.movie != null) {

@@ -8,6 +8,7 @@ import com.kudashov.mtsteta_project.data.source.LocalMovieProvider
 import kotlinx.coroutines.*
 
 class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider {
+
     override suspend fun getMovieListAsync(): Deferred<List<MovieEntity>> =
         GlobalScope.async(Dispatchers.IO) {
             return@async database.movieDao().loadMovie()
