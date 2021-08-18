@@ -1,6 +1,7 @@
 package com.kudashov.mtsteta_project
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.kudashov.mtsteta_project.data.room.AppDatabase
 
@@ -8,18 +9,19 @@ class App : Application() {
 
     companion object {
         var instance: App? = null
+
+        lateinit var appContext: Context
     }
 
-    private var database: AppDatabase? = null
+    //private var database: AppDatabase? = null
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-        database = Room.databaseBuilder(this, AppDatabase::class.java, "database")
-            .build()
+        appContext = applicationContext
     }
 
-    fun getDatabase(): AppDatabase? {
+/*    fun getDatabase(): AppDatabase? {
         return database
-    }
+    }*/
 }

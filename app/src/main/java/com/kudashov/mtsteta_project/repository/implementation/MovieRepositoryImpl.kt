@@ -5,6 +5,8 @@ import com.kudashov.mtsteta_project.data.converter.MovieConverter
 import com.kudashov.mtsteta_project.data.domain.GenreDomain
 import com.kudashov.mtsteta_project.data.domain.MovieDomain
 import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
+import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
+import com.kudashov.mtsteta_project.data.source.LocalMovieProvider
 import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
 import com.kudashov.mtsteta_project.net.response.*
 import com.kudashov.mtsteta_project.repository.MovieRepository
@@ -14,6 +16,7 @@ import kotlinx.coroutines.async
 import java.lang.Exception
 
 class MovieRepositoryImpl(
+    private val localMovieProvider: LocalMovieProvider,
     private val remoteMovieProvider: RemoteMovieProvider,
     private val converter: MovieConverter
 ) : MovieRepository {
@@ -42,6 +45,26 @@ class MovieRepositoryImpl(
                 val movies = remoteMovieProvider.getMovieListAsync().await()
 
                 val listMovie = movies.list?.map { converter.convertMovieListFromApiToDomain(it) }
+
+                localMovieProvider.addMovies(
+                    listMovie?.map {
+                        MovieEntity(
+                            id = it.id,
+                            title = it.title,
+                            imageUrl = it.imageUrl,
+                            genre = null,
+                            date = null,
+                            ageRestriction = it.ageRestriction,
+                            description = it.description,
+                            rateScore = it.rateScore
+                        )
+                    }!!
+                )
+
+                Log.d(
+                    TAG,
+                    "getMovieListAsync: ${localMovieProvider.getMovieListAsync().await().size}"
+                )
 
                 RepoResponse(listMovie, movies.detail)
             } catch (e: Exception) {
