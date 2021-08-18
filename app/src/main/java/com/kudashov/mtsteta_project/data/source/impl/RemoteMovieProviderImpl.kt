@@ -4,6 +4,7 @@ import android.util.Log
 import com.kudashov.mtsteta_project.data.dto.GenreDto
 import com.kudashov.mtsteta_project.data.dto.*
 import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
+import com.kudashov.mtsteta_project.net.response.ActorListResponse
 import com.kudashov.mtsteta_project.net.response.GenreListResponse
 import com.kudashov.mtsteta_project.net.response.MovieListResponse
 import com.kudashov.mtsteta_project.net.response.MovieMoreInfResponse
@@ -113,7 +114,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
         GlobalScope.async(Dispatchers.IO) {
             try {
                 Log.d(TAG, "getGenreListAsync: Provider")
-                Thread.sleep(2)
+                Thread.sleep(1000)
                 return@async GenreListResponse(
                     listOf(
                         GenreDto(123, "боевики"),
@@ -151,18 +152,22 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "",
                         actors = listOf(
                             ActorDto(
+                                5545,
                                 "Джейсон Стейтхам",
                                 "https://img.zeit.de/news/2019-07/02/klick-hit-jason-statham-tritt-schraubverschluss-von-flasche-190702-99-889522-image.jpeg/wide__1300x731"
                             ),
                             ActorDto(
+                                564,
                                 "Холт МакКеллани",
                                 "https://image.tmdb.org/t/p/original/8NvOcP35qv5UHWEdpqAvQrKnQQz.jpg"
                             ),
                             ActorDto(
+                                54541,
                                 "Джеффри Донован",
                                 "https://musicimage.xboxlive.com/catalog/video.contributor.7e016500-0200-11db-89ca-0019b92a3933/image?locale=gd-gb&target=circle"
                             ),
                             ActorDto(
+                                5416,
                                 "Джош Хартнетт",
                                 "https://funart.pro/uploads/posts/2019-11/1573325375_instagram-dzhosh-hartnett-27.jpg"
                             )
@@ -179,18 +184,22 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "08.04.2021",
                         actors = listOf(
                             ActorDto(
+                                89416949,
                                 "Левис Тан",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/lkW8gh20BuwzHecXqYH1eRVuWpb.jpg"
                             ),
                             ActorDto(
+                                49616,
                                 "Джессика МакНами",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/aAfaMEEqD8syHv5bLi5B3sccrM2.jpg"
                             ),
                             ActorDto(
+                                6451,
                                 "Джош Лоусон",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/Am9vM77uZd9bGODugwmWtOfzx6E.jpg"
                             ),
                             ActorDto(
+                                616,
                                 "Таданубу Асана",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/sL0H5my3PAc208n3yu64TO3ug12.jpg"
                             )
@@ -207,18 +216,22 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "29.04.2021",
                         actors = listOf(
                             ActorDto(
+                                981,
                                 "Макс Керолайн",
                                 "https://www.themoviedb.org/person/2879407-max-carolan"
                             ),
                             ActorDto(
+                                651,
                                 "Дермот Магеннис",
                                 "https://www.themoviedb.org/person/2194751-dermot-magennis"
                             ),
                             ActorDto(
+                                11,
                                 "Тера Флинн",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/17gBs4aux2NcnMvf3DK5UKUFttn.jpg"
                             ),
                             ActorDto(
+                                5616,
                                 "Эйва Коннолли",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/o8uE77C4wQHYHJW6En192kjxJGd.jpg"
                             )
@@ -235,18 +248,22 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "13.05.2021",
                         actors = listOf(
                             ActorDto(
+                                541,
                                 "Чанель",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/qqvTuk4CTvS1IE47CUozhcHVahz.jpg"
                             ),
                             ActorDto(
+                                98461,
                                 "Джо Дал Хван",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/jpEPPXmVC3EDMqrDQDYyXEMYlah.jpg"
                             ),
                             ActorDto(
+                                1616,
                                 "Гаэко",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/fDO7vJVRkZOOY1GtQMJzf4N136q.jpg"
                             ),
                             ActorDto(
+                                6651,
                                 "Роти",
                                 "https://www.themoviedb.org/person/2501179-rothy"
                             )
@@ -263,6 +280,7 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "29.04.2021",
                         actors = listOf(
                             ActorDto(
+                                615154,
                                 "6ix9ine",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/xAlvyeC9zLbygGMxmmyTHymwuZP.jpg"
                             )
@@ -279,18 +297,22 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "06.05.2021",
                         actors = listOf(
                             ActorDto(
+                                6515,
                                 "Бенсон Джек Энтони",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/aVfEldX1ksEMrx45yNBAf9MAIDZ.jpg"
                             ),
                             ActorDto(
+                                6163,
                                 "Фрэнсис Берри",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/qCp0psD5qzguABpRxWmMuC04kcl.jpg"
                             ),
                             ActorDto(
+                                95615,
                                 "Кристиан Харизиу",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/8OpoYvO1QqBYRAp1LxxUIiRdQG0.jpg"
                             ),
                             ActorDto(
+                                95615,
                                 "Джастин Кларк",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/lJtDhgboCtHgap33vQG9c1Bjpla.jpg"
                             )
@@ -307,18 +329,22 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "03.06.2021",
                         actors = listOf(
                             ActorDto(
+                                6651646,
                                 "Эмма Стоун",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/2hwXbPW2ffnXUe1Um0WXHG0cTwb.jpg"
                             ),
                             ActorDto(
+                                94151,
                                 "Эмма Томпсон",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/xr8Ki3CIqweWWqS5q0kUYdiK6oQ.jpg"
                             ),
                             ActorDto(
+                                8645154,
                                 "Джоэл Фрай",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/4nEKEWJpaTHncCTv6zeP98V0qGI.jpg"
                             ),
                             ActorDto(
+                                986466,
                                 "Пауль Уолтер Хаузер",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/hV2oiKF2xlDMXtuq3Si1TA4b6DA.jpg"
                             )
@@ -335,18 +361,22 @@ class RemoteMovieProviderImpl : RemoteMovieProvider {
                         date = "08.07.2021",
                         actors = listOf(
                             ActorDto(
+                                64616,
                                 "Скарлет Йоханссон",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg"
                             ),
                             ActorDto(
+                                6516,
                                 "Флоренсе Пью",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/75PvULemW8BvheSKtPMoBBsvPLh.jpg"
                             ),
                             ActorDto(
+                                465163,
                                 "Рэйчел Вайс",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/3QbFXeiUzXUVUrJ7fdiCn7A7ReW.jpg"
                             ),
                             ActorDto(
+                                6451564,
                                 "Дэвид Харбор",
                                 "https://www.themoviedb.org/t/p/w138_and_h175_face/chPekukMF5SNnW6b22NbYPqAStr.jpg"
                             )

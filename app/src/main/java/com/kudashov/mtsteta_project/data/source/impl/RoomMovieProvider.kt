@@ -24,7 +24,13 @@ class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider 
         }
     }
 
-    override suspend fun addMovie(movie: MovieMoreInfEntity) {
+    override suspend fun deleteMovies() {
+        withContext(Dispatchers.IO) {
+            database.movieDao().clearMovies()
+        }
+    }
+
+    override suspend fun addMovieMoreInf(movie: MovieMoreInfEntity) {
         withContext(Dispatchers.IO) {
             database.movieDao().insertMovie(movie.movieEntity)
 
@@ -47,6 +53,12 @@ class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider 
             for (i in genres) {
                 database.genreDao().addGenre(i)
             }
+        }
+    }
+
+    override suspend fun deleteGenres() {
+        withContext(Dispatchers.IO) {
+            database.genreDao().deleteGenres()
         }
     }
 

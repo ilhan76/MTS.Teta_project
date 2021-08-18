@@ -42,6 +42,7 @@ class MovieRepositoryImpl(
                 val listGenres =
                     genres.list?.map { converter.convertGenreListFromApiToDomain(it) }
 
+                localMovieProvider.deleteGenres()
                 localMovieProvider.addGenres(genres.list?.map {
                     converter.convertGenreListFromDtoToEntity(it)
                 }!!)
@@ -78,6 +79,7 @@ class MovieRepositoryImpl(
                     converter.convertMovieListFromApiToDomain(it)
                 }
 
+                localMovieProvider.deleteMovies()
                 localMovieProvider.addMovies(movies.list?.map {
                     converter.convertMovieListFromDtoToEntity(it)
                 }!!)
@@ -111,6 +113,9 @@ class MovieRepositoryImpl(
 
                 if (movieResponse.movie != null) {
                     val movie = converter.convertMovieMoreInfFromApiToDomain(movieResponse.movie)
+                    val movieEntity = converter.convertMovieMoreInfFromDtoToEntity(movieResponse.movie)
+
+                    localMovieProvider.addMovieMoreInf(movieEntity)
                     RepoResponse<MovieMoreInfDomain>(movie, movieResponse.detail)
                 } else RepoResponse<MovieMoreInfDomain>(null, movieResponse.detail)
             } catch (e: Exception) {
