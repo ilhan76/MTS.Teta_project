@@ -25,7 +25,7 @@ import com.kudashov.mtsteta_project.data.room.entity.relations.MovieGenreCrossRe
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
-        private const val DATABASE_NAME = "Films.db"
+        private const val DATABASE_NAME = "films.db"
 
         private var instance: AppDatabase? = null
 

@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kudashov.mtsteta_project.data.converter.implementation.MovieConverterImpl
 import com.kudashov.mtsteta_project.data.domain.GenreDomain
 import com.kudashov.mtsteta_project.data.domain.MovieDomain
 import com.kudashov.mtsteta_project.data.room.AppDatabase
@@ -22,8 +21,7 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
     private val TAG: String = this::class.java.simpleName
     private val repository: MovieRepository = MovieRepositoryImpl(
         localMovieProvider = RoomMovieProvider(AppDatabase.getInstance(getApplication())),
-        remoteMovieProvider = RemoteMovieProviderImpl(),
-        converter = MovieConverterImpl()
+        remoteMovieProvider = RemoteMovieProviderImpl()
     )
 
     private val _genresLiveData = MutableLiveData<List<GenreDomain>>()
@@ -71,5 +69,3 @@ class MovieListViewModel(val context: Application) : AndroidViewModel(context) {
         }
     }
 }
-
-
