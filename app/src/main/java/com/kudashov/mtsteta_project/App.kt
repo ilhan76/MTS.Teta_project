@@ -15,6 +15,7 @@ class App : Application() {
     val apiService: ApiService by lazy { ApiService.create() }
 
     companion object {
-        var instance: App? = null
+        lateinit var instance: App
+            private set
     }
 }

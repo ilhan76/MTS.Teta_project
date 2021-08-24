@@ -37,8 +37,7 @@ class MovieRepositoryImpl(
             try {
                 Log.d(TAG, "getGenreList: REMOTE")
                 val genres = remoteMovieProvider.getGenreListAsync().await()
-                val listGenres =
-                    genres.list?.map { it.toDomain() }
+                val listGenres = genres.list?.map { it.toDomain() }
 
                 localMovieProvider.deleteGenres()
                 localMovieProvider.addGenres(genres.list?.map { it.toEntity() }!!)
@@ -78,7 +77,7 @@ class MovieRepositoryImpl(
                 localMovieProvider.deleteMovies()
                 localMovieProvider.addMovies(movies.list?.map { it.toEntity() }!!)
 
-                RepoResponse(listMovie, null)
+                RepoResponse(listMovie, movies.detail)
             } catch (e: Exception) {
                 RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
             }

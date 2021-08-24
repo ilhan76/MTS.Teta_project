@@ -2,6 +2,7 @@ package com.kudashov.mtsteta_project.screens.movieList
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
     private lateinit var viewModel: MovieListViewModel
 
     private lateinit var genreAdapter: GenresAdapter
+    private lateinit var genreItemDecoration: GenreItemDecoration
     private lateinit var moviesAdapter: MoviesAdapter
 
     private var navigation: NavDelegate? = null
@@ -56,10 +58,8 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
 
         viewModel.genresLiveData.observe(viewLifecycleOwner, Observer {
             genreAdapter.setList(it)
-            val genreItemDecoration =
-                GenreItemDecoration(resources.getDimension(R.dimen.start_margin).toInt())
             genreItemDecoration.setSize(it.size)
-            binding.rvGenres.addItemDecoration(genreItemDecoration)
+            genreItemDecoration.setMargin(resources.getDimension(R.dimen.start_margin).toInt())
         })
 
         viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer {
@@ -76,6 +76,8 @@ class MovieList : Fragment(), MoviesDelegate, GenresDelegate {
         moviesAdapter.attachDelegate(this)
         binding.rvMovies.layoutManager = GridLayoutManager(context, 2)
         binding.rvMovies.adapter = moviesAdapter
+        genreItemDecoration = GenreItemDecoration()
+        binding.rvGenres.addItemDecoration(genreItemDecoration)
 
         val movieItemDecoration = MovieItemDecoration(
             resources.displayMetrics.widthPixels,

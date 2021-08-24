@@ -12,10 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_movie_top_margin"
         android:layout_marginBottom="@dimen/item_movie_bottom_margin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPoster"
@@ -37,8 +36,8 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            style="@style/BaseText"
             android:id="@+id/txtNameOfMovie"
+            style="@style/BaseText"
             android:layout_width="@dimen/item_movie_poster_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_movie_name_top_margin"
@@ -49,11 +48,12 @@
             tools:text="Какой-то фильм" />
 
         <TextView
-            style="@style/BaseText"
             android:id="@+id/txtDescription"
+            style="@style/BaseText"
             android:layout_width="@dimen/item_movie_poster_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_movie_description_top_margin"
+            android:maxLines="5"
             android:textSize="@dimen/small_txt_size"
             app:layout_constraintEnd_toEndOf="@id/cardPoster"
             app:layout_constraintStart_toStartOf="@id/cardPoster"
@@ -65,13 +65,13 @@
             android:layout_width="@dimen/item_movie_rating_bar_width"
             android:layout_height="@dimen/item_movie_rating_bar_height"
             android:layout_marginTop="@dimen/item_movie_rating_bar_top_margin"
-            app:rating="0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtDescription"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:rating="0" />
 
         <TextView
-            style="@style/BaseText"
             android:id="@+id/txtAgeLimit"
+            style="@style/BaseText"
             android:layout_width="@dimen/item_movie_age_limit_size"
             android:layout_height="@dimen/item_movie_age_limit_size"
             android:layout_marginEnd="@dimen/item_movie_age_limit_end_margin"
@@ -83,7 +83,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/movie_details_txt_age_limit" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

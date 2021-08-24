@@ -18,8 +18,7 @@ fun MovieDto.toDomain(): MovieDomain {
         id,
         title,
         description,
-        rateScore,
-        ageRestriction,
+        (rateScore / 2).toInt(),
         imageUrl
     )
 }
@@ -29,16 +28,16 @@ fun MovieDto.toEntity(): MovieEntity = MovieEntity(
     title = title,
     imageUrl = imageUrl,
     date = date,
-    ageRestriction = ageRestriction,
+    //ageRestriction = ageRestriction,
     description = description,
-    rateScore = rateScore
+    rateScore = (rateScore / 2).toInt()
 )
 
 fun MovieEntity.toDomain(): MovieDomain = MovieDomain(
     id = id,
     title = title,
     imageUrl = imageUrl,
-    ageRestriction = ageRestriction,
+    //ageRestriction = ageRestriction,
     description = description,
     rateScore = rateScore
 )
@@ -52,7 +51,7 @@ fun MovieMoreInfDto.toDomain(): MovieMoreInfDomain = MovieMoreInfDomain(
     imageUrl,
     genre.map { it.toDomain() },
     date,
-    ageRestriction,
+    //ageRestriction,
     title,
     description,
     rateScore,
@@ -65,7 +64,7 @@ fun MovieMoreInfDto.toEntity(): MovieMoreInfEntity = MovieMoreInfEntity(
         title = title,
         imageUrl = imageUrl,
         date = date,
-        ageRestriction = ageRestriction,
+        //ageRestriction = ageRestriction,
         description = description,
         rateScore = rateScore
     ),
@@ -78,7 +77,7 @@ fun MovieMoreInfEntity.toDomain(): MovieMoreInfDomain = MovieMoreInfDomain(
     imageUrl = movieEntity.imageUrl,
     genre = genres.map { it.toDomain() },
     data = movieEntity.date,
-    ageRestriction = movieEntity.ageRestriction,
+    //ageRestriction = movieEntity.ageRestriction,
     title = movieEntity.title,
     description = movieEntity.description,
     rateScore = movieEntity.rateScore,

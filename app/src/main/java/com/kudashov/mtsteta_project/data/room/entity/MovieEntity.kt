@@ -17,8 +17,8 @@ class MovieEntity(
     val imageUrl: String,
     @ColumnInfo(name = "data")
     val date: String,
-    @ColumnInfo(name = "age_restriction")
-    val ageRestriction: Int,
+/*    @ColumnInfo(name = "age_restriction")
+    val ageRestriction: Int,*/
     @ColumnInfo(name = "description")
     val description: String,
     @ColumnInfo(name = "rate_store")
