@@ -39,7 +39,7 @@ class MovieViewHolder(private val view: View, private val delegate: MoviesDelega
         rating.rating = movie.rateScore
         title.text = movie.title
         description.text = movie.description
-/*        ageLimit.text =
-            view.context.getString(R.string.movie_list_txt_age_limit, movie.ageRestriction)*/
+        ageLimit.text =
+            view.context.getString(R.string.movie_list_txt_age_limit, movie.ageRestriction)
     }
 }

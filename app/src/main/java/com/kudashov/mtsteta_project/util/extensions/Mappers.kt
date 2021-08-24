@@ -12,23 +12,25 @@ import com.kudashov.mtsteta_project.data.room.entity.ActorEntity
 import com.kudashov.mtsteta_project.data.room.entity.GenreEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieMoreInfEntity
+import com.kudashov.mtsteta_project.util.IMJ_PREF
 
-fun MovieDto.toDomain(): MovieDomain {
+fun MovieDto.toDomain(ageRestriction: String): MovieDomain {
     return MovieDomain(
         id,
         title,
         description,
         (rateScore / 2).toInt(),
-        imageUrl
+        ageRestriction,
+        IMJ_PREF + imageUrl
     )
 }
 
-fun MovieDto.toEntity(): MovieEntity = MovieEntity(
+fun MovieDto.toEntity(ageRestriction: String): MovieEntity = MovieEntity(
     id = id,
     title = title,
-    imageUrl = imageUrl,
+    imageUrl = IMJ_PREF + imageUrl,
     date = date,
-    //ageRestriction = ageRestriction,
+    ageRestriction = ageRestriction,
     description = description,
     rateScore = (rateScore / 2).toInt()
 )
@@ -37,7 +39,7 @@ fun MovieEntity.toDomain(): MovieDomain = MovieDomain(
     id = id,
     title = title,
     imageUrl = imageUrl,
-    //ageRestriction = ageRestriction,
+    ageRestriction = ageRestriction,
     description = description,
     rateScore = rateScore
 )
@@ -51,7 +53,7 @@ fun MovieMoreInfDto.toDomain(): MovieMoreInfDomain = MovieMoreInfDomain(
     imageUrl,
     genre.map { it.toDomain() },
     date,
-    //ageRestriction,
+    ageRestriction,
     title,
     description,
     rateScore,
@@ -64,7 +66,7 @@ fun MovieMoreInfDto.toEntity(): MovieMoreInfEntity = MovieMoreInfEntity(
         title = title,
         imageUrl = imageUrl,
         date = date,
-        //ageRestriction = ageRestriction,
+        ageRestriction = ageRestriction,
         description = description,
         rateScore = rateScore
     ),
@@ -77,7 +79,7 @@ fun MovieMoreInfEntity.toDomain(): MovieMoreInfDomain = MovieMoreInfDomain(
     imageUrl = movieEntity.imageUrl,
     genre = genres.map { it.toDomain() },
     data = movieEntity.date,
-    //ageRestriction = movieEntity.ageRestriction,
+    ageRestriction = movieEntity.ageRestriction,
     title = movieEntity.title,
     description = movieEntity.description,
     rateScore = movieEntity.rateScore,

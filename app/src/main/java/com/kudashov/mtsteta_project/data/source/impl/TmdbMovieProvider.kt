@@ -3,9 +3,12 @@ package com.kudashov.mtsteta_project.data.source.impl
 import android.util.Log
 import com.kudashov.mtsteta_project.App
 import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
-import com.kudashov.mtsteta_project.net.response.GenreListResponse
-import com.kudashov.mtsteta_project.net.response.MovieListResponse
-import com.kudashov.mtsteta_project.net.response.MovieMoreInfResponse
+import com.kudashov.mtsteta_project.net.response.movieList.GenreListResponse
+import com.kudashov.mtsteta_project.net.response.movieList.MovieListResponse
+import com.kudashov.mtsteta_project.net.response.movieDetail.MovieMoreInfResponse
+import com.kudashov.mtsteta_project.net.response.movieList.AgeRestrictionResponse
+import com.kudashov.mtsteta_project.util.API_KEY
+import com.kudashov.mtsteta_project.util.LANGUAGE_RU
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -19,14 +22,21 @@ class TmdbMovieProvider : RemoteMovieProvider {
         GlobalScope.async(Dispatchers.IO) {
             try {
                 Log.d(TAG, "getMovieListAsync: TMDB")
-                val resp = App.instance.apiService.getMovies(
-                    "9d436a04889597a4869e5b2e91511a8b",
-                    "ru-RU"
-                )
-                return@async resp
+                return@async App.instance.apiService.getMovies(API_KEY, LANGUAGE_RU)
             } catch (e: Exception) {
                 Log.d(TAG, "getMovieListAsync: ${e.localizedMessage}")
                 return@async MovieListResponse(null, e.localizedMessage)
+            }
+        }
+
+    override suspend fun getAgeRestrictionAsync(id: Int): Deferred<AgeRestrictionResponse> =
+        GlobalScope.async(Dispatchers.IO) {
+            try {
+                Log.d(TAG, "getAgeRestrictionAsync: TMDB")
+                return@async App.instance.apiService.getAgeRestriction(id, API_KEY, LANGUAGE_RU)
+            } catch (e: Exception) {
+                Log.d(TAG, "getAgeRestrictionAsync: ${e.localizedMessage}")
+                return@async AgeRestrictionResponse(null)
             }
         }
 
@@ -34,13 +44,9 @@ class TmdbMovieProvider : RemoteMovieProvider {
         GlobalScope.async(Dispatchers.IO) {
             try {
                 Log.d(TAG, "getGenreListAsync: TMDB")
-                val resp = App.instance.apiService.getGenres(
-                    "9d436a04889597a4869e5b2e91511a8b",
-                    "ru-RU"
-                )
-                return@async resp
+                return@async App.instance.apiService.getGenres(API_KEY, LANGUAGE_RU)
             } catch (e: Exception) {
-                Log.d(TAG, "getMovieListAsync: ${e.localizedMessage}")
+                Log.d(TAG, "getGenreListAsync: ${e.localizedMessage}")
                 return@async GenreListResponse(null, e.localizedMessage)
             }
         }

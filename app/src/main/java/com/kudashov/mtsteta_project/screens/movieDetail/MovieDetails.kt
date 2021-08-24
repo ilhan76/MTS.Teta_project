@@ -62,8 +62,8 @@ class MovieDetails : Fragment() {
             txtDate.text = movie.data
             txtTitle.text = movie.title
             rating.rating = movie.rateScore
-/*            txtAgeLimit.text =
-                context?.getString(R.string.movie_details_txt_age_limit, movie.ageRestriction)*/
+            txtAgeLimit.text =
+                context?.getString(R.string.movie_details_txt_age_limit, movie.ageRestriction)
             txtDescription.text = movie.description
         }
 

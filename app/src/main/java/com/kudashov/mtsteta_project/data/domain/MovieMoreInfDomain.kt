@@ -5,7 +5,7 @@ data class MovieMoreInfDomain(
     val imageUrl: String,
     val genre: List<GenreDomain>,
     val data: String,
-    //val ageRestriction: Int,
+    val ageRestriction: String,
     val title: String,
     val description: String,
     val rateScore: Int,

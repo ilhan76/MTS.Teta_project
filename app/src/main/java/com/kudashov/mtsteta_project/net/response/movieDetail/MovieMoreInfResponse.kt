@@ -1,4 +1,4 @@
-package com.kudashov.mtsteta_project.net.response
+package com.kudashov.mtsteta_project.net.response.movieDetail
 
 import com.kudashov.mtsteta_project.data.dto.MovieMoreInfDto
 
