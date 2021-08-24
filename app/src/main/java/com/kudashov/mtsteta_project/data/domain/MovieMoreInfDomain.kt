@@ -3,7 +3,7 @@ package com.kudashov.mtsteta_project.data.domain
 data class MovieMoreInfDomain(
     val id: Int,
     val imageUrl: String,
-    val genre: GenreDomain,
+    val genre: List<GenreDomain>,
     val data: String,
     val ageRestriction: Int,
     val title: String,

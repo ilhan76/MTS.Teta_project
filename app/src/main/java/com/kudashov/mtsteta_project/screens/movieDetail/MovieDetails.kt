@@ -56,7 +56,9 @@ class MovieDetails : Fragment() {
             .into(binding.moveImage)
 
         binding.apply {
-            txtGenre.text = movie.genre.genre
+            txtGenre.text = if (movie.genre.isNotEmpty()){
+                movie.genre.first().genre
+            } else ""
             txtDate.text = movie.data
             txtTitle.text = movie.title
             rating.rating = movie.rateScore
