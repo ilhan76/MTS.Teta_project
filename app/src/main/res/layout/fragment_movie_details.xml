@@ -81,7 +81,10 @@
                 android:layout_marginStart="@dimen/start_margin"
                 android:layout_marginBottom="@dimen/movie_details_title_bottom_margin"
                 android:textSize="@dimen/movie_details_title_txt_size"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@+id/rating"
+                app:layout_constraintEnd_toStartOf="@+id/txtAgeLimit"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="@string/movie_details_title_of_move" />
 

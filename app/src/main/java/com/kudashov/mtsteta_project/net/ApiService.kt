@@ -45,7 +45,8 @@ interface ApiService {
 
     @GET("movie/{movie_id}")
     suspend fun getMovieMoreInf(
+        @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
-        @Path("movie_id") movieId: Int
+        @Query("language") language: String
     ): MovieMoreInfResponse
 }

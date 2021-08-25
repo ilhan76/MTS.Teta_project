@@ -51,7 +51,12 @@ class TmdbMovieProvider : RemoteMovieProvider {
             }
         }
 
-    override suspend fun getMovieMoreInfAsync(id: Int): Deferred<MovieMoreInfResponse> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getMovieMoreInfAsync(id: Int): Deferred<MovieMoreInfResponse> =
+        GlobalScope.async(Dispatchers.IO) {
+            try {
+                App.instance.apiService.getMovieMoreInf(id, API_KEY, LANGUAGE_RU)
+            } catch (e: Exception){
+                MovieMoreInfResponse(null, e.localizedMessage)
+            }
+        }
 }
