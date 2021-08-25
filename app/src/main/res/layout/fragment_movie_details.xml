@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/grey">
 
-
     <ImageView
         android:id="@+id/moveImage"
         android:layout_width="match_parent"
@@ -95,8 +94,7 @@
                 android:layout_marginStart="@dimen/start_margin"
                 android:layout_marginBottom="@dimen/movie_details_star_bottom_margin"
                 app:layout_constraintBottom_toTopOf="@+id/txtDescription"
-                app:layout_constraintStart_toStartOf="parent"
-                app:rating="0" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/txtDescription"

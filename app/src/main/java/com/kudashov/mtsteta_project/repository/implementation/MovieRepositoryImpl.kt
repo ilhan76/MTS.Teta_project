@@ -9,6 +9,7 @@ import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
 import com.kudashov.mtsteta_project.net.response.*
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.util.extensions.toDomain
+import com.kudashov.mtsteta_project.util.extensions.toDto
 import com.kudashov.mtsteta_project.util.extensions.toEntity
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -125,13 +126,23 @@ class MovieRepositoryImpl(
                 Log.d(TAG, "getMovieMoreInfAsync: Repo")
                 val movieResponse = remoteMovieProvider.getMovieMoreInfAsync(id).await()
 
-                if (movieResponse.movie != null) {
-                    val movie = movieResponse.movie.toDomain()
-                    val movieEntity = movieResponse.movie.toEntity()
+                var restriction = ""
+                val ageRestrictionResponse =
+                    remoteMovieProvider.getAgeRestrictionAsync(movieResponse.id!!).await()
+                if (ageRestrictionResponse.list != null) {
+                    for (i in ageRestrictionResponse.list) {
+                        if (i.lang == "RU") {
+                            restriction = i.list.first().restriction
+                        }
+                    }
+                }
 
-                    localMovieProvider.addMovieMoreInf(movieEntity)
-                    RepoResponse(movie, movieResponse.detail)
-                } else RepoResponse<MovieMoreInfDomain>(null, movieResponse.detail)
+                val actorResponse = remoteMovieProvider.getActorListAsync(movieResponse.id).await()
+
+                val movie = movieResponse.toDto(restriction, actorResponse.list)
+                localMovieProvider.addMovieMoreInf(movie.toEntity())
+                Log.d(TAG, "getMovieMoreInf: $movie")
+                RepoResponse(movie.toDomain(), movieResponse.detail)
             } catch (e: Exception) {
                 RepoResponse<MovieMoreInfDomain>(null, e.localizedMessage)
             }

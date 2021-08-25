@@ -17,18 +17,18 @@ class MyRatingBar @JvmOverloads constructor(
     private var filled: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_star_filled)
     private var empty: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_star_unfilled)
 
-    var rating = 0
+    var ratingScope = 0
 
     init {
         context.withStyledAttributes(attrs, R.styleable.MyRatingBar) {
-            rating = getInt(R.styleable.MyRatingBar_rating, 0)
+            ratingScope = getInt(R.styleable.MyRatingBar_rating, 0)
         }
     }
 
     override fun onDraw(canvas: Canvas) {
         for (i in 1..5) {
             val w = height * (i - 1)
-            val pic = if (rating >= i) filled else empty
+            val pic = if (ratingScope >= i) filled else empty
             pic?.setBounds(w, 0, w + height, height)
             pic?.draw(canvas)
         }

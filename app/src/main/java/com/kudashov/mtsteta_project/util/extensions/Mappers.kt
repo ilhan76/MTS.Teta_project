@@ -12,6 +12,7 @@ import com.kudashov.mtsteta_project.data.room.entity.ActorEntity
 import com.kudashov.mtsteta_project.data.room.entity.GenreEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieEntity
 import com.kudashov.mtsteta_project.data.room.entity.MovieMoreInfEntity
+import com.kudashov.mtsteta_project.net.response.movieDetail.MovieMoreInfResponse
 import com.kudashov.mtsteta_project.util.IMJ_PREF
 
 fun MovieDto.toDomain(ageRestriction: String): MovieDomain {
@@ -48,16 +49,28 @@ fun GenreDto.toDomain(): GenreDomain = GenreDomain(id, genre)
 fun GenreDto.toEntity(): GenreEntity = GenreEntity(id = id, genre = genre)
 fun GenreEntity.toDomain(): GenreDomain = GenreDomain(id = id, genre = genre)
 
+fun MovieMoreInfResponse.toDto(ageRestriction: String, actorsDto: List<ActorDto>?): MovieMoreInfDto = MovieMoreInfDto(
+    id ?: 0,
+    imageUrl ?: "",
+    genre!!,
+    date ?: "",
+    ageRestriction,
+    title ?: "",
+    description ?: "",
+    (rateScore?.div(2))?.toInt()!!,
+    actorsDto
+)
+
 fun MovieMoreInfDto.toDomain(): MovieMoreInfDomain = MovieMoreInfDomain(
     id,
-    imageUrl,
+    IMJ_PREF + imageUrl,
     genre.map { it.toDomain() },
     date,
     ageRestriction,
     title,
     description,
     rateScore,
-    actors.map { it.toDomain() }
+    actors?.map { it.toDomain() }!!
 )
 
 fun MovieMoreInfDto.toEntity(): MovieMoreInfEntity = MovieMoreInfEntity(
@@ -71,7 +84,7 @@ fun MovieMoreInfDto.toEntity(): MovieMoreInfEntity = MovieMoreInfEntity(
         rateScore = rateScore
     ),
     genres = genre.map { it.toEntity() },
-    actors = actors.map { it.toEntity() }
+    actors = actors?.map { it.toEntity() }!!
 )
 
 fun MovieMoreInfEntity.toDomain(): MovieMoreInfDomain = MovieMoreInfDomain(
@@ -86,6 +99,6 @@ fun MovieMoreInfEntity.toDomain(): MovieMoreInfDomain = MovieMoreInfDomain(
     actors = actors.map { it.toDomain() }
 )
 
-fun ActorDto.toDomain(): ActorDomain = ActorDomain(id, name, avatarUrl)
-fun ActorDto.toEntity(): ActorEntity = ActorEntity(id, name, avatarUrl)
+fun ActorDto.toDomain(): ActorDomain = ActorDomain(id, name, IMJ_PREF + avatarUrl)
+fun ActorDto.toEntity(): ActorEntity = ActorEntity(id, name, IMJ_PREF + avatarUrl)
 fun ActorEntity.toDomain(): ActorDomain = ActorDomain(id, name, avatarUrl)

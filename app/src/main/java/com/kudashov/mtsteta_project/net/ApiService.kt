@@ -1,5 +1,6 @@
 package com.kudashov.mtsteta_project.net
 
+import com.kudashov.mtsteta_project.net.response.movieDetail.ActorListResponse
 import com.kudashov.mtsteta_project.net.response.movieList.GenreListResponse
 import com.kudashov.mtsteta_project.net.response.movieList.MovieListResponse
 import com.kudashov.mtsteta_project.net.response.movieDetail.MovieMoreInfResponse
@@ -42,6 +43,13 @@ interface ApiService {
         @Query("api_key") apiKey: String,
         @Query("language") language: String
     ): GenreListResponse
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getActors(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String
+    ): ActorListResponse
 
     @GET("movie/{movie_id}")
     suspend fun getMovieMoreInf(

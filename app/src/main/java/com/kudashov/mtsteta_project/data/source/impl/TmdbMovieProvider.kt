@@ -3,6 +3,7 @@ package com.kudashov.mtsteta_project.data.source.impl
 import android.util.Log
 import com.kudashov.mtsteta_project.App
 import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
+import com.kudashov.mtsteta_project.net.response.movieDetail.ActorListResponse
 import com.kudashov.mtsteta_project.net.response.movieList.GenreListResponse
 import com.kudashov.mtsteta_project.net.response.movieList.MovieListResponse
 import com.kudashov.mtsteta_project.net.response.movieDetail.MovieMoreInfResponse
@@ -51,12 +52,23 @@ class TmdbMovieProvider : RemoteMovieProvider {
             }
         }
 
+    override suspend fun getActorListAsync(id: Int): Deferred<ActorListResponse> =
+        GlobalScope.async(Dispatchers.IO) {
+            try {
+                Log.d(TAG, "getActorListAsync: TMDB")
+                return@async App.instance.apiService.getActors(id, API_KEY, LANGUAGE_RU)
+            } catch (e: Exception) {
+                Log.d(TAG, "getActorListAsync: ${e.localizedMessage}")
+                return@async ActorListResponse(null, e.localizedMessage)
+            }
+        }
+
     override suspend fun getMovieMoreInfAsync(id: Int): Deferred<MovieMoreInfResponse> =
         GlobalScope.async(Dispatchers.IO) {
             try {
                 App.instance.apiService.getMovieMoreInf(id, API_KEY, LANGUAGE_RU)
             } catch (e: Exception){
-                MovieMoreInfResponse(null, e.localizedMessage)
+                MovieMoreInfResponse(detail = e.localizedMessage)
             }
         }
 }

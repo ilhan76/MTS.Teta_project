@@ -9,5 +9,5 @@ data class MovieMoreInfDto (
     val title: String,
     val description: String,
     val rateScore: Int,
-    val actors: List<ActorDto>
+    val actors: List<ActorDto>?
 )

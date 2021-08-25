@@ -36,7 +36,7 @@ class MovieViewHolder(private val view: View, private val delegate: MoviesDelega
             .load(movie.imageUrl)
             .into(poster)
 
-        rating.rating = movie.rateScore
+        rating.ratingScope = movie.rateScore
         title.text = movie.title
         description.text = movie.description
         ageLimit.text =

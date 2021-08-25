@@ -1,5 +1,6 @@
 package com.kudashov.mtsteta_project.data.source
 
+import com.kudashov.mtsteta_project.net.response.movieDetail.ActorListResponse
 import com.kudashov.mtsteta_project.net.response.movieList.GenreListResponse
 import com.kudashov.mtsteta_project.net.response.movieList.MovieListResponse
 import com.kudashov.mtsteta_project.net.response.movieDetail.MovieMoreInfResponse
@@ -10,5 +11,6 @@ interface RemoteMovieProvider {
     suspend fun getMovieListAsync() : Deferred<MovieListResponse>
     suspend fun getAgeRestrictionAsync(id: Int) : Deferred<AgeRestrictionResponse>
     suspend fun getGenreListAsync() : Deferred<GenreListResponse>
+    suspend fun getActorListAsync(id: Int) : Deferred<ActorListResponse>
     suspend fun getMovieMoreInfAsync(id: Int) : Deferred<MovieMoreInfResponse>
 }
