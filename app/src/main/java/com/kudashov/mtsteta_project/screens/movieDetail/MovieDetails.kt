@@ -1,6 +1,7 @@
 package com.kudashov.mtsteta_project.screens.movieDetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,9 +62,15 @@ class MovieDetails : Fragment() {
             } else ""
             txtDate.text = movie.data
             txtTitle.text = movie.title
-            rating.rating = movie.rateScore
-            txtAgeLimit.text =
-                context?.getString(R.string.movie_details_txt_age_limit, movie.ageRestriction)
+            rating.apply {
+                this.ratingScope = movie.rateScore
+                invalidate()
+            }
+            Log.d(TAG, "loadData: ${rating.ratingScope}")
+            txtAgeLimit.text = context?.getString(
+                R.string.movie_details_txt_age_limit,
+                movie.ageRestriction
+            )
             txtDescription.text = movie.description
         }
 

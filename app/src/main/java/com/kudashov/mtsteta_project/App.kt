@@ -4,24 +4,18 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.kudashov.mtsteta_project.data.room.AppDatabase
+import com.kudashov.mtsteta_project.net.ApiService
 
 class App : Application() {
 
-    companion object {
-        var instance: App? = null
-
-        lateinit var appContext: Context
-    }
-
-    //private var database: AppDatabase? = null
-
-    override fun onCreate() {
-        super.onCreate()
+    init {
         instance = this
-        appContext = applicationContext
     }
 
-/*    fun getDatabase(): AppDatabase? {
-        return database
-    }*/
+    val apiService: ApiService by lazy { ApiService.create() }
+
+    companion object {
+        lateinit var instance: App
+            private set
+    }
 }

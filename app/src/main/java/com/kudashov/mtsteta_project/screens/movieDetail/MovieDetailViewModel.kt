@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kudashov.mtsteta_project.data.domain.MovieMoreInfDomain
 import com.kudashov.mtsteta_project.data.room.AppDatabase
-import com.kudashov.mtsteta_project.data.source.impl.RemoteMovieProviderImpl
 import com.kudashov.mtsteta_project.data.source.impl.RoomMovieProvider
+import com.kudashov.mtsteta_project.data.source.impl.TmdbMovieProvider
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.repository.implementation.MovieRepositoryImpl
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ class MovieDetailViewModel(val context: Application) : AndroidViewModel(context)
     private val TAG: String = this::class.java.simpleName
     private val repository: MovieRepository = MovieRepositoryImpl(
         localMovieProvider = RoomMovieProvider(AppDatabase.getInstance(getApplication())),
-        remoteMovieProvider = RemoteMovieProviderImpl()
+        remoteMovieProvider = TmdbMovieProvider()
     )
 
     private val _movieMoreInfLiveData = MutableLiveData<MovieMoreInfDomain>()

@@ -9,6 +9,7 @@ import com.kudashov.mtsteta_project.data.source.RemoteMovieProvider
 import com.kudashov.mtsteta_project.net.response.*
 import com.kudashov.mtsteta_project.repository.MovieRepository
 import com.kudashov.mtsteta_project.util.extensions.toDomain
+import com.kudashov.mtsteta_project.util.extensions.toDto
 import com.kudashov.mtsteta_project.util.extensions.toEntity
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -37,11 +38,10 @@ class MovieRepositoryImpl(
             try {
                 Log.d(TAG, "getGenreList: REMOTE")
                 val genres = remoteMovieProvider.getGenreListAsync().await()
-                val listGenres =
-                    genres.list?.map { it.toDomain() }
+                val listGenres = genres.genres?.map { it.toDomain() }
 
                 localMovieProvider.deleteGenres()
-                localMovieProvider.addGenres(genres.list?.map { it.toEntity() }!!)
+                localMovieProvider.addGenres(genres.genres?.map { it.toEntity() }!!)
 
                 RepoResponse(listGenres, genres.detail)
             } catch (e: Exception) {
@@ -71,14 +71,35 @@ class MovieRepositoryImpl(
             try {
                 Log.d(TAG, "getMovieListAsync: REMOTE")
                 val movies = remoteMovieProvider.getMovieListAsync().await()
-                val listMovie = movies.list?.map {
-                    it.toDomain()
+                val listMovie = movies.results?.map {
+                    //todo - improve
+                    var restriction = ""
+                    val resp = remoteMovieProvider.getAgeRestrictionAsync(it.id).await()
+                    if (resp.results != null){
+                        for (i in resp.results){
+                            if (i.iso == "RU"){
+                                restriction = i.releaseDates.first().certification
+                            }
+                        }
+                    }
+                    it.toDomain(restriction)
                 }
 
                 localMovieProvider.deleteMovies()
-                localMovieProvider.addMovies(movies.list?.map { it.toEntity() }!!)
+                localMovieProvider.addMovies(movies.results?.map {
+                    var restriction = ""
+                    val resp = remoteMovieProvider.getAgeRestrictionAsync(it.id).await()
+                    if (resp.results != null){
+                        for (i in resp.results){
+                            if (i.iso == "RU"){
+                                restriction = i.releaseDates.first().certification
+                            }
+                        }
+                    }
+                    it.toEntity(restriction)
+                }!!)
 
-                RepoResponse(listMovie, null)
+                RepoResponse(listMovie, movies.detail)
             } catch (e: Exception) {
                 RepoResponse<List<MovieDomain>>(null, e.localizedMessage)
             }
@@ -105,13 +126,23 @@ class MovieRepositoryImpl(
                 Log.d(TAG, "getMovieMoreInfAsync: Repo")
                 val movieResponse = remoteMovieProvider.getMovieMoreInfAsync(id).await()
 
-                if (movieResponse.movie != null) {
-                    val movie = movieResponse.movie.toDomain()
-                    val movieEntity = movieResponse.movie.toEntity()
+                var restriction = ""
+                val ageRestrictionResponse =
+                    remoteMovieProvider.getAgeRestrictionAsync(movieResponse.id!!).await()
+                if (ageRestrictionResponse.results != null) {
+                    for (i in ageRestrictionResponse.results) {
+                        if (i.iso == "RU") {
+                            restriction = i.releaseDates.first().certification
+                        }
+                    }
+                }
 
-                    localMovieProvider.addMovieMoreInf(movieEntity)
-                    RepoResponse(movie, movieResponse.detail)
-                } else RepoResponse<MovieMoreInfDomain>(null, movieResponse.detail)
+                val actorResponse = remoteMovieProvider.getActorListAsync(movieResponse.id).await()
+
+                val movie = movieResponse.toDto(restriction, actorResponse.cast)
+                localMovieProvider.addMovieMoreInf(movie.toEntity())
+                Log.d(TAG, "getMovieMoreInf: $movie")
+                RepoResponse(movie.toDomain(), movieResponse.detail)
             } catch (e: Exception) {
                 RepoResponse<MovieMoreInfDomain>(null, e.localizedMessage)
             }
