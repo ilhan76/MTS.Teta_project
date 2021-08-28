@@ -7,16 +7,16 @@ data class MovieMoreInfResponse (
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("backdrop_path")
-    val imageUrl: String? = null,
+    val backdropPath: String? = null,
     @SerializedName("genres")
-    val genre: List<GenreDto>? = null,
+    val genres: List<GenreDto>? = null,
     @SerializedName("release_date")
-    val date: String? = null,
+    val releaseDate: String? = null,
     @SerializedName("title")
     val title: String? = null,
     @SerializedName("overview")
-    val description: String? = null,
+    val overview: String? = null,
     @SerializedName("vote_average")
-    val rateScore: Double? = null,
+    val voteAverage: Double? = null,
     val detail: String?
 )

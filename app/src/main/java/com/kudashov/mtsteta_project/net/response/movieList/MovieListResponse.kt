@@ -5,6 +5,6 @@ import com.kudashov.mtsteta_project.data.dto.MovieDto
 
 data class MovieListResponse(
     @SerializedName("results")
-    val list: List<MovieDto>?,
+    val results: List<MovieDto>?,
     val detail: String?
 )

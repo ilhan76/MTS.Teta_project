@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class AgeRestrictionResponse(
     @SerializedName("results")
-    val list: List<ItemAgeRestrictionResponse>?
+    val results: List<ItemAgeRestrictionResponse>?
 )
 
 data class ItemAgeRestrictionResponse(
     @SerializedName("iso_3166_1")
-    val lang: String,
+    val iso: String,
     @SerializedName("release_dates")
-    val list: List<AgeRestriction>
+    val releaseDates: List<AgeRestriction>
 )
 
 data class AgeRestriction(
     @SerializedName("certification")
-    val restriction: String
+    val certification: String
 )

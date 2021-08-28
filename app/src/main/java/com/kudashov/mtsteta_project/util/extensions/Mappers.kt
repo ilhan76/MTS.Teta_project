@@ -51,13 +51,13 @@ fun GenreEntity.toDomain(): GenreDomain = GenreDomain(id = id, genre = genre)
 
 fun MovieMoreInfResponse.toDto(ageRestriction: String, actorsDto: List<ActorDto>?): MovieMoreInfDto = MovieMoreInfDto(
     id ?: 0,
-    imageUrl ?: "",
-    genre!!,
-    date ?: "",
+    backdropPath ?: "",
+    genres!!,
+    releaseDate ?: "",
     ageRestriction,
     title ?: "",
-    description ?: "",
-    (rateScore?.div(2))?.toInt()!!,
+    overview ?: "",
+    (voteAverage?.div(2))?.toInt()!!,
     actorsDto
 )
 
