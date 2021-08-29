@@ -11,9 +11,13 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kudashov.mtsteta_project.databinding.ActivityMainBinding
 import com.kudashov.mtsteta_project.screens.NavDelegate
+import com.kudashov.mtsteta_project.servises.UpdateWorker
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), NavDelegate {
 
@@ -27,6 +31,11 @@ class MainActivity : AppCompatActivity(), NavDelegate {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val updateWorkRequest = PeriodicWorkRequest
+            .Builder(UpdateWorker::class.java, 30, TimeUnit.MINUTES)
+            .build()
+        WorkManager.getInstance().enqueue(updateWorkRequest)
 
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 

@@ -17,11 +17,9 @@ class RoomMovieProvider(private val database: AppDatabase) : LocalMovieProvider 
             return@async database.movieDao().getMovie()
         }
 
-    override suspend fun addMovies(movies: List<MovieEntity>) {
+    override suspend fun addMovie(movie: MovieEntity) {
         withContext(Dispatchers.IO) {
-            for (i in movies) {
-                database.movieDao().insertMovie(i)
-            }
+            database.movieDao().insertMovie(movie)
         }
     }
 
