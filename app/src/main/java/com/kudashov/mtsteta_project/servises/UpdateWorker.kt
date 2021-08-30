@@ -1,6 +1,7 @@
 package com.kudashov.mtsteta_project.servises
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.work.Worker
@@ -16,7 +17,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class UpdateWorker(val context: Application, params: WorkerParameters) : Worker(context, params) {
+class UpdateWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
 
     override fun doWork(): Result {
         return try {

@@ -66,7 +66,8 @@ dependencies {
     implementation 'org.conscrypt:conscrypt-android:2.2.1'
 
     // Work Manager
-    implementation "android.arch.work:work-runtime:1.0.1"
+    def work_version = "2.5.0"
+    implementation "androidx.work:work-runtime-ktx:$work_version"
 
     //room
     def room_version = "2.3.0"
