@@ -7,7 +7,7 @@ import kotlinx.coroutines.Deferred
 
 interface LocalMovieProvider {
     suspend fun getMovieListAsync() : Deferred<List<MovieEntity>>
-    suspend fun addMovies(movies: List<MovieEntity>)
+    suspend fun addMovie(movie: MovieEntity)
     suspend fun addMovieMoreInf(movie: MovieMoreInfEntity)
     suspend fun deleteMovies()
 
